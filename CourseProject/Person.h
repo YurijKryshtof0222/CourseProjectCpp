@@ -31,9 +31,9 @@ public:
 	virtual void setMonth(int month);
 	virtual void setYear(int year);
 
-	void setFirstName(std::string);
-	void setLastName(std::string);
-	void setOccupation(std::string);
+	void setFirstName(const std::string&);
+	void setLastName(const std::string&);
+	void setOccupation(const std::string&);
 	void setSalary(int);
 	void setSex(bool);
 

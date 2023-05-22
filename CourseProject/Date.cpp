@@ -230,7 +230,7 @@ std::istream& operator >> (std::istream& is, Date& date)
         return is;
     }
 
-    catch (std::exception& e) 
+    catch (std::runtime_error& e)
     {
         std::cerr << e.what() << std::endl;
     }

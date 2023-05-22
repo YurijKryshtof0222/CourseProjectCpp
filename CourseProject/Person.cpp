@@ -52,34 +52,34 @@ int Person::getYear() const
 
 std::string Person::fullname() const
 {
-	return firstname + " " + lastname;;
+	return firstname + " " + lastname;
 }
 
-void Person::setFirstName(std::string firstname)
+void Person::setFirstName(const std::string& firstname)
 {
-	if (&firstname == NULL || firstname.empty())
-		throw new std::exception("Firstname value must be not empty!");
+	if (&firstname == nullptr || firstname.empty())
+		throw std::runtime_error("Firstname value must be not empty!");
 	this->firstname = firstname;
 }
 
-void Person::setLastName(std::string lastname)
+void Person::setLastName(const std::string& lastname)
 {
-	if (&lastname == NULL || lastname.empty())
-		throw new std::exception("Lastname value must be not empty!");
+	if (&lastname == nullptr || lastname.empty())
+		throw std::runtime_error("Lastname value must be not empty!");
 	this->lastname = lastname;
 }
 
-void Person::setOccupation(std::string occupation)
+void Person::setOccupation(const std::string& occupation)
 {
-	if (&occupation == NULL || occupation.empty())
-		throw new std::exception("Lastname value must be not empty!");;
+	if (&occupation == nullptr || occupation.empty())
+		throw std::runtime_error("Lastname value must be not empty!");;
 	this->occupation = occupation;
 }
 
 void Person::setSalary(int salary)
 {
 	if (salary < 0)
-		throw new std::exception("Salary value must be greater than negative number!");
+		throw std::runtime_error("Salary value must be greater than negative number!");
 	this->salary = salary;
 }
 

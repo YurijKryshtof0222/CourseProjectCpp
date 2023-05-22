@@ -59,19 +59,19 @@ Date::Validator::Validator()
 void Date::Validator::validateDay(int month, int day)
 {
     if (day < 1 || day > monthDaysMap.at(month))
-        throw std::exception("Incorrect day value!");
+        throw std::runtime_error("Incorrect day value!");
 }
 
 void Date::Validator::validateMonth(int month)
 {
     if (month < 1 || month > 12)
-        throw std::exception("Incorrect month value!");
+        throw std::runtime_error("Incorrect month value!");
 }
 
 void Date::Validator::validateYear(int year)
 {
     if (year < 1900 || year > 2100)
-        throw std::exception("Incorrect year value!");
+        throw std::runtime_error("Incorrect year value!");
 }
 
 void Date::Validator::validateAll(int day, int month, int year)

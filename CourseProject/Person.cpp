@@ -3,6 +3,10 @@
 #include "Date.h"
 #include "Person.h"
 
+Person::Person()
+{
+}
+
 Person::Person(Date birthdate, std::string firstname, std::string lastname, std::string occupation, int salary, bool sex) : Date(birthdate)
 {
 	this->firstname = firstname;
@@ -140,15 +144,31 @@ std::istream& operator>>(std::istream& is, Person& person)
 	int month;
 	int year;
 	
-	is >> day >> month >> year >> lastname >> firstname >> occupation >> salary >> sex;
+	using namespace std;
 
+	cout << "Enter person birthdate day: ";
+	is >> day;
+	cout << "Enter person birthdate month: ";
+	is >> month;
 	person.setMonth(month);
 	person.setDay(day);
+	cout << "Enter person birthdate year: ";
+	is >> year;
 	person.setYear(year);
-	person.setFirstName(lastname);
-	person.setLastName(firstname);
+	cout << "Enter person firstname: ";
+	is >> firstname;
+	person.setFirstName(firstname);
+	cout << "Enter person lastname: ";
+	is >> lastname;
+	person.setLastName(lastname);
+	cout << "Enter person occupation: ";
+	is >> occupation;
 	person.setOccupation(occupation);
+	cout << "Enter person salary: ";
+	is >> salary;
 	person.setSalary(salary);
+	cout << "Enter person sex: ";
+	is >> sex;
 	person.setSex(sex);
 
 	return is;

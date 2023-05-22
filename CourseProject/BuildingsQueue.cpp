@@ -15,6 +15,9 @@ void BuildingsQueue::add(Person person, Date date)
 
 void BuildingsQueue::remove(int index)
 {
+	if (index < 0 || index > array.size())
+		throw std::runtime_error("Element Index is out of bounds");
+
 	array.erase(array.begin() + index);
 }
 
@@ -64,6 +67,6 @@ std::ostream& operator << (std::ostream& os, const BuildingsQueue& buildingsQueu
 		os << i++ << ".) "	   << iter->first
 		   << "Waiting Time: " << iter->second << endl;
 	}
-	os << endl << "}";
+	os << "}" << endl;
 	return os;
 }

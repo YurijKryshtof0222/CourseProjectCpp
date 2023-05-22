@@ -13,6 +13,8 @@ private:
 	bool sex;
 
 public:
+	Person();
+	
 	Person(Date birthdate,
 		std::string firstname,
 		std::string lastname,
@@ -46,5 +48,5 @@ public:
 	std::string fullname() const;
 
 	friend std::ostream& operator << (std::ostream& os, const Person& date);
-	friend std::istream& operator >> (std::istream& os, Person& date);
+	friend std::istream& operator >> (std::istream& is, Person& date);
 };

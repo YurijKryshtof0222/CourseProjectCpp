@@ -10,6 +10,7 @@
 
 void fillDataForQueue();
 void showMenu();
+void sort();
 void addNewPerson();
 void removePersonFromQueue();
 int main();

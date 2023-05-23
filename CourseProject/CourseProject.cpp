@@ -47,13 +47,12 @@ void removePersonFromQueue()
     cout << "Enter person index you want to remove from queue: " << endl;
     int index;
     cin >> index;
-    queue.remove(index);
+    queue.remove(index + 1);
 }
 
 void showMenu()
 {
     cout << setw(60) << "BuildingQueue Demo" << endl;
-    
 
     bool exit = false;
     int action;
@@ -64,9 +63,10 @@ void showMenu()
         {
             delimeter;
             cout << "1.)Show Buildings queue " << endl;
-            cout << "2.)Add new person to queue " << endl;
-            cout << "3.)Delete person in queue by index " << endl;
-            cout << "4.)Exit " << endl << endl;
+            cout << "2.)Sort queue by decreasing length of stay" << endl;
+            cout << "3.)Add new person to queue " << endl;
+            cout << "4.)Delete person in queue by index " << endl;
+            cout << "5.)Exit " << endl << endl;
 
             cout << "Choose your action: ";
             cin >> action;
@@ -78,12 +78,15 @@ void showMenu()
                 cout << queue;
                 break;
             case 2:
-                addNewPerson();
+                sort();
                 break;
             case 3:
-                cout << queue;
+                addNewPerson();
                 break;
             case 4:
+                removePersonFromQueue();
+                break;
+            case 5:
                 exit = true;
                 break;
             default:
@@ -92,12 +95,18 @@ void showMenu()
         }
         catch (std::runtime_error e)
         {
-            cout << e.what();
+            cout << e.what() << endl;
         }
         cin.clear(); //clear errors/bad flags on cin
         cin.ignore(cin.rdbuf()->in_avail(), '\n');//precise amount of ignoring
         cin.rdbuf()->in_avail(); //returns the exact number of characters in the cin buffer.
     }
+}
+
+void sort()
+{
+    queue.sortByTheLengthOfStay();
+    cout << "Queue was sorted by "
 }
 
 int main()

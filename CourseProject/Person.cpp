@@ -117,7 +117,7 @@ bool Person::getSex()
 	return sex;
 }
 
-std::ostream& operator<<(std::ostream& os, const Person& person)
+std::ostream& operator << (std::ostream& os, const Person& person)
 {
 	os << "Surname: " << person.lastname << std::endl;
 	os << "Name: " << person.firstname << std::endl;
@@ -132,7 +132,7 @@ std::ostream& operator<<(std::ostream& os, const Person& person)
 	return os;
 }
 
-std::istream& operator>>(std::istream& is, Person& person)
+std::istream& operator >> (std::istream& is, Person& person)
 {
 	std::string firstname;
 	std::string lastname;

@@ -7,7 +7,7 @@
 #include "BuildingsQueue.h"
 #include "CourseProject.h"
 
-#define delimeter cout << setw(120) << setfill('-') << "" << endl;
+#define delimeter cout << setw(120) << setfill('-') << "" << endl << endl;
 
 using namespace std;
 
@@ -44,7 +44,7 @@ void addNewPerson()
 
 void removePersonFromQueue()
 {
-    cout << "Enter person index you want to remove from queue: " << endl;
+    cout << "Enter person index you want to remove from queue: ";
     int index;
     cin >> index;
     queue.remove(index - 1);

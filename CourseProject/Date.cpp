@@ -110,8 +110,8 @@ void Date::baseSetMonth(int month)
 
 void Date::baseSetYear(int year)
 {
-    validator.validateMonth(month);
-    this->month = month;
+    validator.validateYear(year);
+    this->year = year;
 }
 
 // Методи налаштування значень полів
@@ -124,7 +124,7 @@ void Date::setDay(int day)
 void Date::setMonth(int month) 
 {
     std::cout << "You set date month to " << month << std::endl;
-    baseSetDay(month);
+    baseSetMonth(month);
 }
 
 void Date::setYear(int year) 
@@ -216,14 +216,19 @@ std::ostream& operator << (std::ostream& os, const Date& date)
 
 std::istream& operator >> (std::istream& is, Date& date)
 {    
+    using namespace std;
+    
     int day, month, year;
     
     try 
     {
+        cout << "Enter day: ";
         is >> day;
+        cout << "Enter month: ";
         is >> month;
         date.setMonth(month);
         date.setDay(day);
+        cout << "Enter year: ";
         is >> year;
         date.setYear(year);
        

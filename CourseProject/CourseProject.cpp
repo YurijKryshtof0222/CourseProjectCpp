@@ -47,7 +47,7 @@ void removePersonFromQueue()
     cout << "Enter person index you want to remove from queue: " << endl;
     int index;
     cin >> index;
-    queue.remove(index + 1);
+    queue.remove(index - 1);
 }
 
 void showMenu()
@@ -106,7 +106,7 @@ void showMenu()
 void sort()
 {
     queue.sortByTheLengthOfStay();
-    cout << "Queue was sorted by "
+    cout << "Queue was sorted by decreasing waiting time in the queue" << endl;
 }
 
 int main()

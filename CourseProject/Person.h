@@ -3,7 +3,7 @@
 #include "Date.h"
 #include "string.h"
 
-class Person : public Date
+class Person : private Date
 {
 private:
 	std::string firstname;
@@ -24,14 +24,7 @@ public:
 
 	~Person();
 
-	virtual int getDay() const;
-	virtual int getMonth() const;
-	virtual int getYear() const;
-
-	// методи встановлення значень полів
-	virtual void setDay(int day);
-	virtual void setMonth(int month);
-	virtual void setYear(int year);
+	virtual std::string dateToString() const;
 
 	void setFirstName(const std::string&);
 	void setLastName(const std::string&);

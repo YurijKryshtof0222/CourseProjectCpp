@@ -1,9 +1,11 @@
 #pragma once
 
 #include <iostream>
+#include <string>
 #include <map>
 
-class Date {
+class Date 
+{
 private:
     int day;
     int month;
@@ -27,14 +29,6 @@ private:
     };
 
     Validator validator;
-protected:
-    int baseGetDay() const;
-    int baseGetMonth() const;
-    int baseGetYear() const;
-
-    void baseSetDay(int day);
-    void baseSetMonth(int month);
-    void baseSetYear(int year);
 public:
     // конструктори
     Date();
@@ -45,21 +39,23 @@ public:
     ~Date();
 
     // методи отримання значень полів
-    virtual int getDay() const;
-    virtual int getMonth() const;
-    virtual int getYear() const;
+    int getDay() const;
+    int getMonth() const;
+    int getYear() const;
+
+    virtual std::string dateToString() const;
 
     // методи встановлення значень полів
     virtual void setDay(int day);
     virtual void setMonth(int month);
     virtual void setYear(int year);
 
-    void operator+=(int days);
-    void operator-=(int days);
-    void operator=(const Date& other);
+    void operator += (int days);
+    void operator -= (int days);
+
+    void operator = (const Date& other);
+    bool operator < (const Date&);
 
     friend std::ostream& operator << (std::ostream& os, const Date& date);
     friend std::istream& operator >> (std::istream& os, Date& date);
-    
-    bool operator<(const Date&);
 };

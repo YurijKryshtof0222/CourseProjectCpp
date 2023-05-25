@@ -18,40 +18,11 @@ Person::Person(Date birthdate, std::string firstname, std::string lastname, std:
 
 Person::~Person() {}
 
-void Person::setDay(int day)
+std::string Person::dateToString() const
 {
-	std::cout << "You set birthdate day to " << day << std::endl;
-	Date::baseSetDay(day);
-}
-
-void Person::setMonth(int month)
-{
-	std::cout << "You set birthdate month to " << month << std::endl;
-	Date::baseSetMonth(month);
-}
-
-void Person::setYear(int year)
-{
-	std::cout << "You set birthdate year to " << year << std::endl;
-	Date::baseSetYear(year);
-}
-
-int Person::getDay() const
-{
-	std::cout << fullname() << "'s Birthdate day is: " << baseGetDay() << std::endl;
-	return baseGetDay();
-}
-
-int Person::getMonth() const
-{
-	std::cout << fullname() << "'s Birthdate month is: " << baseGetMonth() << std::endl;
-	return baseGetMonth();
-}
-
-int Person::getYear() const
-{
-	std::cout << fullname() << "'s Birthdate year is: " << baseGetYear() << std::endl;
-	return baseGetYear();
+	return  std::to_string(getYear())
+		+ "_" + std::to_string(getMonth())
+		+ "_" + std::to_string(getDay());
 }
 
 std::string Person::fullname() const
@@ -121,10 +92,8 @@ std::ostream& operator << (std::ostream& os, const Person& person)
 {
 	os << "Surname: " << person.lastname << std::endl;
 	os << "Name: " << person.firstname << std::endl;
-	os << "Birthdate: ";
-	
-	os << person.baseGetDay() << "." << person.baseGetMonth() << "." << person.baseGetYear() << std::endl;
-	
+	os << "Birthdate: " << person.dateToString() << std::endl;
+
 	os << "Sex: " << (person.sex ? "Male" : "Female") << std::endl;
 	os << "Salary: " << person.salary << std::endl;
 	os << "Occupation: " << person.occupation << std::endl;

@@ -81,73 +81,49 @@ void Date::Validator::validateAll(int day, int month, int year)
     validateYear(year);
 }
 
-int Date::baseGetDay() const
-{
-    return day;
-}
-
-int Date::baseGetMonth() const
-{
-    return month;
-}
-
-int Date::baseGetYear() const
-{
-    return year;
-}
-
-void Date::baseSetDay(int day)
+// Методи налаштування значень полів
+void Date::setDay(int day)
 {
     validator.validateDay(month, day);
     this->day = day;
 }
 
-void Date::baseSetMonth(int month)
+void Date::setMonth(int month) 
 {
     validator.validateMonth(month);
     this->month = month;
 }
 
-void Date::baseSetYear(int year)
+void Date::setYear(int year) 
 {
     validator.validateYear(year);
     this->year = year;
 }
 
-// Методи налаштування значень полів
-void Date::setDay(int day)
-{
-    std::cout << "You set date day to " << day << std::endl;
-    baseSetDay(day);
-}
-
-void Date::setMonth(int month) 
-{
-    std::cout << "You set date month to " << month << std::endl;
-    baseSetMonth(month);
-}
-
-void Date::setYear(int year) 
-{
-    std::cout << "You set date year to " << year << std::endl;
-    baseSetYear(year);
-}
-
 // Методи отримання значень полів
-int Date::getDay() const {
-    std::cout << "Date day is: " << day << std::endl;
-    return baseGetDay();
+int Date::getDay() const 
+{
+    return day;
 }
 
-int Date::getMonth() const {
+int Date::getMonth() const 
+{
     std::cout << "Date month is: " << month << std::endl;
-    return baseGetMonth();
+    return month;
 }
 
-int Date::getYear() const {
+int Date::getYear() const 
+{
     std::cout << "Date year is: " << year << std::endl;
-    return baseGetYear();
+    return year;
 }
+
+std::string Date::dateToString() const
+{
+    return std::to_string(day) 
+        + "." + std::to_string(month) 
+        + "." + std::to_string(year);
+} 
 
 void Date::operator += (int days)
 {
@@ -201,7 +177,7 @@ void Date::operator = (const Date& other)
     this->year = other.year;
 }
 
-bool Date::operator<(const Date& another)
+bool Date::operator < (const Date& another)
 {
     return this->year < another.year
         || this->month < another.month
@@ -210,7 +186,7 @@ bool Date::operator<(const Date& another)
 
 std::ostream& operator << (std::ostream& os, const Date& date)
 {
-    os << date.day << "." << date.month << "." << date.year;
+    os << date.dateToString();
     return os;
 }
 

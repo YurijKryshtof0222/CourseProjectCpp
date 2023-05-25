@@ -63,10 +63,13 @@ void showMenu()
         {
             delimeter;
             cout << "1.)Show Buildings queue " << endl;
+            //cout << "1.)Show Buildings queue with filtration " << endl;
             cout << "2.)Sort queue by decreasing length of stay" << endl;
             cout << "3.)Add new person to queue " << endl;
             cout << "4.)Delete person in queue by index " << endl;
             cout << "5.)Exit " << endl << endl;
+           
+            //cout << "6.)+= demo " << endl << endl;
 
             cout << "Choose your action: ";
             cin >> action;

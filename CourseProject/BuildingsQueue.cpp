@@ -5,7 +5,7 @@
 
 bool BuildingsQueue::utilCompareFunction(std::pair<Person, Date> i, std::pair<Person, Date> j)
 {
-	return i.second < j.second;
+	return i.second > j.second;
 }
 
 void BuildingsQueue::add(Person person, Date date)
@@ -46,27 +46,42 @@ void BuildingsQueue::sortByTheLengthOfStay()
 	std::sort(array.begin(), array.end(), utilCompareFunction);
 }
 
-auto BuildingsQueue::beginIterator()
+BuildingsQueueIterator BuildingsQueue::begin()
 {
-	array.begin();
+	return BuildingsQueueIterator(&array[0]);
 }
 
-auto BuildingsQueue::endIterator()
+BuildingsQueueIterator BuildingsQueue::end()
 {
-	array.end();
+	return BuildingsQueueIterator(&array[0] + array.size());
 }
 
-std::ostream& operator << (std::ostream& os, const BuildingsQueue& buildingsQueue)
+//TVShowProgramIterator TVShowProgram::begin()
+//{;
+//    return TVShowProgramIterator(&shows[0]);
+//}
+//
+//TVShowProgramIterator TVShowProgram::end()
+//{
+//    return TVShowProgramIterator(&shows[0] + shows.size());
+//}
+
+std::ostream& operator << (std::ostream& os, BuildingsQueue& buildingsQueue)
 {
 	using namespace std;
 	
 	int i = 1;
 	os << "Buildings Queue { " << endl;
-	for (auto iter = buildingsQueue.array.begin(); iter != buildingsQueue.array.end(); iter++)
+	for (auto iter : buildingsQueue)
+	{
+		os << i++ << ".) " << iter.first
+			<< "Waiting Time: " << iter.second << endl;
+	}
+	/*for (auto iter = buildingsQueue.array.begin(); iter != buildingsQueue.array.end(); iter++)
 	{
 		os << i++ << ".) "	   << iter->first
 		   << "Waiting Time: " << iter->second << endl;
-	}
+	}*/
 	os << "}" << endl;
 	return os;
 }

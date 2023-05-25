@@ -177,11 +177,11 @@ void Date::operator = (const Date& other)
     this->year = other.year;
 }
 
-bool Date::operator < (const Date& another)
+bool Date::operator > (const Date& another)
 {
-    return this->year < another.year
-        || this->month < another.month
-        || this->day < another.day;
+    if (this->year != another.year) return this->year > another.year;
+    if (this->month != another.month) return this->month > another.month;
+    return this->day > another.day;
 }
 
 std::ostream& operator << (std::ostream& os, const Date& date)

@@ -11,6 +11,12 @@
 
 using namespace std;
 
+const char* ANSI_GREEN = "\x1B[32m";
+const char* ANSI_RESET = "\033[0m";
+const char* ANSI_MAGENTA = "\x1B[35m";
+const char* ANSI_RED = "\x1B[31m";
+const char* ANSI_BLUE = "\x1B[34m";
+
 BuildingsQueue queue;
 
 void fillDataForQueue() {
@@ -62,12 +68,12 @@ void showMenu()
         try 
         {
             delimeter;
-            cout << "1.)Show Buildings queue " << endl;
+            cout << ANSI_MAGENTA << "1.)Show Buildings queue " <<  endl;
             //cout << "1.)Show Buildings queue with filtration " << endl;
             cout << "2.)Sort queue by decreasing length of stay" << endl;
             cout << "3.)Add new person to queue " << endl;
             cout << "4.)Delete person in queue by index " << endl;
-            cout << "5.)Exit " << endl << endl;
+            cout << "5.)Exit " << ANSI_RESET << endl << endl;
            
             //cout << "6.)+= demo " << endl << endl;
 

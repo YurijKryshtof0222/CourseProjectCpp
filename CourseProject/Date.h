@@ -45,7 +45,7 @@ public:
     int getMonth() const;
     int getYear() const;
 
-    virtual std::string dateToString() const;
+    std::string dateToString() const override;
 
     // методи встановлення значень полів
     void setDay(int day);

@@ -1,13 +1,14 @@
 #include "CourseProject.h"
 
-#define delimeter cout << ANSI_GREEN << setw(120) << setfill('-') << "" << ANSI_RESET << endl;
+#define delimeter cout << ANSI_YELLOW << setw(120) << setfill('-') << "\n" << ANSI_RESET;
 
 using namespace std;
 
-const char* ANSI_GREEN = "\x1B[32m";
-const char* ANSI_YELLOW = "\e[0;33m";
 const char* ANSI_RESET = "\033[0m";
-const char* ANSI_MAGENTA = "\x1B[35m";
+
+const char* ANSI_GREEN = "\x1B[32m";
+const char* ANSI_YELLOW = "\x1B[0;33m";
+
 const char* ANSI_RED = "\x1B[31m";
 const char* ANSI_BLUE = "\x1B[34m";
 
@@ -19,10 +20,10 @@ void fillDataForQueue() {
     Date date3(17, 5, 2023);
     Date date4(17, 3, 2024);
     
-    Person person1(Date(28, 9, 1997), "Oleksii", "Pryadko", "software engineer", 20000, true);
+    Person person1(Date(28, 9, 1997),  "Oleksii", "Pryadko", "software engineer", 20000, true);
     Person person2(Date(15, 10, 1985), "Oleh", "Vynnyk", "SEO", 40000, true);
     Person person3(Date(23, 11, 1993), "Vitaliy", "Tsal'", "mechainic", 12000, true);
-    Person person4(Date(16, 6, 2000), "Yana", "Zyst", "hairdresser", 13000, false);
+    Person person4(Date(16, 6, 2000),  "Yana", "Zyst", "hairdresser", 13000, false);
 
     buildingsQueue.add(person1, date1);
     buildingsQueue.add(person2, date2);
@@ -30,7 +31,7 @@ void fillDataForQueue() {
     buildingsQueue.add(person4, date4);
 }
 
-void showWithIndexRange()
+void showQueueWithIndexRangeMenu()
 {
     int from;
     int to;
@@ -38,14 +39,12 @@ void showWithIndexRange()
     cout << "Enter the index from which you want to show the queue: ";
     cin >> from;
     from--;
-    buildingsQueue.throwIfIndexIsOutOfBounds(from);
+
+    BuildingsQueue::Iterator iter = buildingsQueue.at(from);
 
     cout << "Enter the index to which you want to show the queue(inclusively): ";
     cin >> to;
     to--;
-    buildingsQueue.throwIfIndexIsOutOfBounds(to);
-
-    BuildingsQueue::Iterator iter = buildingsQueue.at(from);
     
     cout << "Buildings Queue { " << endl;
     for (; from <= to; from++, iter++)
@@ -56,33 +55,40 @@ void showWithIndexRange()
     cout << "}" << endl;
 }
 
-void addNewPerson()
+void sortQueueMenu()
+{
+    buildingsQueue.sortByTheLengthOfStay();
+    cout << ANSI_GREEN << "Queue was sorted by decreasing waiting time" << ANSI_RESET << endl;
+}
+
+void addNewPersonMenu()
 {
     Person person;
     Date date;
     
     cout << "New person" << endl;
     cin >> person;
-    cout << "Enter person waiting time " << endl;
+    cout << "Enter person waiting time: " << endl;
     cin >> date;
 
     buildingsQueue.add(person, date);
+    cout << ANSI_GREEN << "User has been added to queue successfully" << ANSI_RESET << endl;
 }
 
-void incrementWaitingTime()
+void incrementWaitingTimeMenu()
 {
     int index, days;
 
     cout << "Enter person index you want to increment waiting time: ";
     cin >> index;
     index--;
-    buildingsQueue.throwIfIndexIsOutOfBounds(index);
 
     Person person = buildingsQueue.getPerson(index);
     Date waitingTime = buildingsQueue.getWaitingTime(index);
 
     cout << index + 1 << ".)" << person.fullname() << endl;
-    cout << "Current waiting time: "<< waitingTime << endl;
+    cout << ANSI_YELLOW << "Current " << ANSI_RESET 
+        << "waiting time : "<< waitingTime << endl;
 
     cout << "Enter days you want increment/decrement person waiting time: ";
     cin >> days;
@@ -90,10 +96,10 @@ void incrementWaitingTime()
     waitingTime += days;
     buildingsQueue.setWaitingTime(index, waitingTime);
 
-    cout << "Updated waiting time: " << waitingTime << endl;
+    cout << ANSI_GREEN << "Updated " << ANSI_RESET << "waiting time : " << waitingTime << endl;
 }
 
-void removePersonFromQueue()
+void removePersonFromQueueMenu()
 {
     int index;
     
@@ -101,16 +107,27 @@ void removePersonFromQueue()
     cin >> index;
 
     buildingsQueue.remove(index - 1);
+
+    cout << ANSI_GREEN << "Person has been deleted from queue successfully" << ANSI_RESET << endl;
 }
 
-void showMenu()
+void lateBindingDemoMenu()
+{
+    Date *date1 = new Date(24, 4, 2022);
+    Date *date2 = new Person;
+
+    cout << "Date format from Date object "   << date1->dateToString() << endl;
+    cout << "Date format from Person object " << date2->dateToString() << endl;
+}
+
+void showMainMenu()
 {
     cout << setw(60) << "BuildingsQueue Demo" << endl;
 
-    bool exit = false;
+    bool exitState = false;
     int action;
 
-    while (!exit)
+    while (!exitState)
     {
         try 
         {
@@ -120,10 +137,9 @@ void showMenu()
             cout << "3.)Sort queue by decreasing length of stay" << endl;
             cout << "4.)Add new person to queue " << endl;
             cout << "5.)Delete person in queue by index " << endl;
-            
-            cout << "6.)Increment/decrement person waiting time" << endl;
-            //cout << "8.)+= demo " << endl << endl;
+            cout << "6.)Increment/decrement person waiting time" << endl << endl;
 
+            cout << "8.)Late Binding mechaninsm Demo" << endl;
             cout << "9.)Exit " << endl << endl;
 
             cout << "Choose your action: ";
@@ -136,25 +152,30 @@ void showMenu()
                 cout << buildingsQueue;
                 break;
             case 2:
-                showWithIndexRange();
+                showQueueWithIndexRangeMenu();
                 break;
             case 3:
-                sort();
+                sortQueueMenu();
                 break;
             case 4:
-                addNewPerson();
+                addNewPersonMenu();
                 break;
             case 5:
-                removePersonFromQueue();
+                removePersonFromQueueMenu();
                 break;
             case 6:
-                incrementWaitingTime();
+                incrementWaitingTimeMenu();
+                break;
+            case 8:
+                lateBindingDemoMenu();
                 break;
             case 9:
-                exit = true;
+                exitState = true;
+                cout << setfill(' ') << setw(50) << ANSI_GREEN << "Goodbye!" << ANSI_RESET << endl;
                 break;
             default:
-                cout << "You have entered the wrong action! Please try again." << endl;
+                cout << ANSI_RED <<
+                    "You have entered the wrong action! " << ANSI_RESET << "Please try again." << endl;
             }
         }
         catch (std::runtime_error e)
@@ -168,19 +189,13 @@ void showMenu()
     }
 }
 
-void sort()
-{
-    buildingsQueue.sortByTheLengthOfStay();
-    cout << ANSI_BLUE << "Queue was sorted by decreasing waiting time" << ANSI_RESET << endl;
-}
-
 int main()
 {
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
 
     fillDataForQueue();
-    showMenu();
+    showMainMenu();
 
     return 0;
 }

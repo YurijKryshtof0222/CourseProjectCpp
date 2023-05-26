@@ -5,7 +5,7 @@
 #include <iostream>
 #include <string>
 
-class Person : private Date
+class Person : public Date
 {
 private:
 	std::string firstname;

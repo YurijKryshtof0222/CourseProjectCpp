@@ -12,35 +12,41 @@ void BuildingsQueue::add(Person person, Date date)
 
 void BuildingsQueue::remove(int index)
 {
-	throwIfIndexIsOutOfBounds(index);
+	if (isIndexOutOfBounds(index))
+		throw std::runtime_error("index is out of bounds");
 
 	array.erase(array.begin() + index);
 }
 
 Person BuildingsQueue::getPerson(int index) const
 {
-	throwIfIndexIsOutOfBounds(index);
+	if (isIndexOutOfBounds(index))
+		throw std::runtime_error("index is out of bounds");
 
 	return array[index].first;
 }
 
 Date BuildingsQueue::getWaitingTime(int index) const
 {
-	throwIfIndexIsOutOfBounds(index);
+	if (isIndexOutOfBounds(index))
+		throw std::runtime_error("index is out of bounds");
+
 
 	return array[index].second;
 }
 
 void BuildingsQueue::setPerson(int index, Person person)
 {
-	throwIfIndexIsOutOfBounds(index);
+	if (isIndexOutOfBounds(index))
+		throw std::runtime_error("index is out of bounds");
 	
 	array[index].first = person;
 }
 
 void BuildingsQueue::setWaitingTime(int index, Date date)
 {
-	throwIfIndexIsOutOfBounds(index);
+	if (isIndexOutOfBounds(index))
+		throw std::runtime_error("index is out of bounds");
 
 	array[index].second = date;
 }
@@ -55,12 +61,6 @@ bool BuildingsQueue::isIndexOutOfBounds(int index) const
 	return index < 0 || index > array.size();
 }
 
-void BuildingsQueue::throwIfIndexIsOutOfBounds(int index) const
-{
-	if (isIndexOutOfBounds(index))
-		throw new std::runtime_error("Index out of bounds");
-}
-
 BuildingsQueue::Iterator BuildingsQueue::begin()
 {
 	return Iterator(&array[0]);
@@ -73,6 +73,9 @@ BuildingsQueue::Iterator BuildingsQueue::end()
 
 BuildingsQueue::Iterator BuildingsQueue::at(int index)
 {
+	if (isIndexOutOfBounds(index))
+		throw std::runtime_error("index is out of bounds");
+	
 	return Iterator(&array[0] + index);
 }
 
@@ -84,7 +87,7 @@ std::ostream& operator << (std::ostream& os, BuildingsQueue& buildingsQueue)
 	os << "Buildings Queue { " << endl;
 	for (auto& iter : buildingsQueue)
 	{
-		os << i++ << ".) "	   << iter.first
+		os << i++ << ".) "	   << iter.first  << endl
 		   << "Waiting Time: " << iter.second << endl;
 	}
 	/*for (auto iter = buildingsQueue.array.begin(); iter != buildingsQueue.array.end(); iter++)

@@ -107,7 +107,7 @@ std::istream& operator >> (std::istream& is, Person& person)
 	std::string firstname;
 	std::string lastname;
 	std::string occupation;
-	bool sex;
+	char sexCh;
 	int salary;
 
 	int day;
@@ -116,29 +116,32 @@ std::istream& operator >> (std::istream& is, Person& person)
 	
 	using namespace std;
 
-	cout << "Enter person birthdate day: ";
-	is >> day;
-	cout << "Enter person birthdate month: ";
-	is >> month;
-	person.setMonth(month);
-	person.setDay(day);
-	cout << "Enter person birthdate year: ";
+	cout << "Enter birthdate year: ";
 	is >> year;
 	person.setYear(year);
-	cout << "Enter person firstname: ";
+	cout << "Enter birthdate month: ";
+	is >> month;
+	person.setMonth(month);
+	cout << "Enter birthdate day: ";
+	is >> day;
+	person.setDay(day);
+	cout << "Enter firstname: ";
 	is >> firstname;
 	person.setFirstName(firstname);
-	cout << "Enter person lastname: ";
+	cout << "Enter lastname: ";
 	is >> lastname;
 	person.setLastName(lastname);
-	cout << "Enter person occupation: ";
+	cout << "Enter occupation: ";
 	is >> occupation;
 	person.setOccupation(occupation);
-	cout << "Enter person salary: ";
+	cout << "Enter salary: ";
 	is >> salary;
 	person.setSalary(salary);
-	cout << "Enter person sex: ";
-	is >> sex;
+
+	cout << "Enter sex(m/w): ";
+	is >> sexCh;
+
+	bool sex = sexCh == 'm' ? true : false;
 	person.setSex(sex);
 
 	return is;

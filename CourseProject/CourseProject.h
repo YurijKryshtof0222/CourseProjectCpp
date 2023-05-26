@@ -9,11 +9,13 @@
 #include <windows.h>
 
 void fillDataForQueue();
-void showWithIndexRange();
-void sort();
-void addNewPerson();
-void incrementWaitingTime();
-void removePersonFromQueue();
-void showMenu();
+
+void showQueueWithIndexRangeMenu();
+void sortQueueMenu();
+void addNewPersonMenu();
+void incrementWaitingTimeMenu();
+void removePersonFromQueueMenu();
+void lateBindingDemoMenu();
+void showMainMenu();
 
 int main();

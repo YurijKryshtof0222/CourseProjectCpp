@@ -88,7 +88,7 @@ std::ostream& operator << (std::ostream& os, BuildingsQueue& buildingsQueue)
 	for (auto& iter : buildingsQueue)
 	{
 		os << i++ << ".) "	   << iter.first  << endl
-		   << "Waiting Time: " << iter.second << endl;
+		   << "Waiting Time: " << iter.second << endl << endl;
 	}
 	/*for (auto iter = buildingsQueue.array.begin(); iter != buildingsQueue.array.end(); iter++)
 	{

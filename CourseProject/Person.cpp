@@ -22,7 +22,8 @@ Person::~Person() {}
 std::string Person::dateToString() const
 {
 	return  std::to_string(getYear())
-		+ "_" + std::to_string(getMonth())
+		+ "_" + (getMonth() < 10 ? "0" : "")
+		+       std::to_string(getMonth())
 		+ "_" + std::to_string(getDay());
 }
 

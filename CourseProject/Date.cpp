@@ -118,7 +118,8 @@ int Date::getYear() const
 std::string Date::dateToString() const
 {
     return std::to_string(day) 
-        + "." + std::to_string(month) 
+        + "." + (month < 10 ? "0" : "") 
+              + std::to_string(month)
         + "." + std::to_string(year);
 } 
 

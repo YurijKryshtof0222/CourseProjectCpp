@@ -5,12 +5,10 @@
 using namespace std;
 
 const char* ANSI_RESET = "\033[0m";
-
 const char* ANSI_GREEN = "\x1B[32m";
 const char* ANSI_YELLOW = "\x1B[0;33m";
-
 const char* ANSI_RED = "\x1B[31m";
-const char* ANSI_BLUE = "\x1B[34m";
+
 
 BuildingsQueue buildingsQueue;
 
@@ -22,7 +20,7 @@ void fillDataForQueue() {
     
     Person person1(Date(28, 9, 1997),  "Oleksii", "Pryadko", "software engineer", 20000, true);
     Person person2(Date(15, 10, 1985), "Oleh", "Vynnyk", "SEO", 40000, true);
-    Person person3(Date(23, 11, 1993), "Vitaliy", "Tsal'", "mechainic", 12000, true);
+    Person person3(Date(23, 11, 1993), "Vitalii", "Tsal'", "mechainic", 12000, true);
     Person person4(Date(16, 6, 2000),  "Yana", "Zyst", "hairdresser", 13000, false);
 
     buildingsQueue.add(person1, date1);
@@ -50,7 +48,7 @@ void showQueueWithIndexRangeMenu()
     for (; from <= to; from++, iter++)
     {
         cout << from + 1 << ".)" << iter->first
-             << "Waiting Time: " << iter->second << endl;
+             << "Waiting Time: " << iter->second << endl << endl;
     }
     cout << "}" << endl;
 }
@@ -72,7 +70,7 @@ void addNewPersonMenu()
     cin >> date;
 
     buildingsQueue.add(person, date);
-    cout << ANSI_GREEN << "User has been added to queue successfully" << ANSI_RESET << endl;
+    cout << ANSI_GREEN << "Person has been added to queue successfully" << ANSI_RESET << endl;
 }
 
 void incrementWaitingTimeMenu()
@@ -134,7 +132,7 @@ void showMainMenu()
             delimeter;
             cout << "1.)Show Buildings queue " <<  endl;
             cout << "2.)Show Buildings queue with the specified index range" << endl;
-            cout << "3.)Sort queue by decreasing length of stay" << endl;
+            cout << "3.)Sort queue by decreasing waiting time" << endl;
             cout << "4.)Add new person to queue " << endl;
             cout << "5.)Delete person in queue by index " << endl;
             cout << "6.)Increment/decrement person waiting time" << endl << endl;

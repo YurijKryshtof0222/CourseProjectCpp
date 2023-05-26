@@ -1,13 +1,15 @@
 #pragma once
 
 #include "Date.h"
+#include "IDate.h"
 
 #include <iostream>
 #include <string>
 
-class Person : public Date
+class Person : public IDate
 {
 private:
+	Date birthdate;
 	std::string firstname;
 	std::string lastname;
 	std::string occupation;

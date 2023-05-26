@@ -111,8 +111,8 @@ void removePersonFromQueueMenu()
 
 void lateBindingDemoMenu()
 {
-    Date *date1 = new Date(24, 4, 2022);
-    Date *date2 = new Person;
+    IDate *date1 = new Date(24, 4, 2022);
+    IDate *date2 = new Person;
 
     cout << "Date format from Date object "   << date1->dateToString() << endl;
     cout << "Date format from Person object " << date2->dateToString() << endl;

@@ -136,6 +136,7 @@
     <ClInclude Include="BuildingsQueue.h" />
     <ClInclude Include="CourseProject.h" />
     <ClInclude Include="Date.h" />
+    <ClInclude Include="IDate.h" />
     <ClInclude Include="Person.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

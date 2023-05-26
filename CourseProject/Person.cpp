@@ -8,8 +8,9 @@ Person::Person() : Person(Date(15, 1, 1990), "John", "Doe", "driver", 20000, tru
 }
 
 Person::Person(Date birthdate, std::string firstname, std::string lastname, std::string occupation, int salary, bool sex) 
-	: Date(birthdate)
+	
 {
+	this->birthdate = birthdate;
 	this->firstname = firstname;
 	this->lastname = lastname;
 	this->occupation = occupation;
@@ -21,10 +22,10 @@ Person::~Person() {}
 
 std::string Person::dateToString() const
 {
-	return  std::to_string(getYear())
-		+ "_" + (getMonth() < 10 ? "0" : "")
-		+       std::to_string(getMonth())
-		+ "_" + std::to_string(getDay());
+	return  std::to_string(birthdate.getYear())
+		+ "_" + (birthdate.getMonth() < 10 ? "0" : "")
+		+       std::to_string(birthdate.getMonth())
+		+ "_" + std::to_string(birthdate.getDay());
 }
 
 std::string Person::fullname() const
@@ -119,13 +120,13 @@ std::istream& operator >> (std::istream& is, Person& person)
 
 	cout << "Enter birthdate year: ";
 	is >> year;
-	person.setYear(year);
+	person.birthdate.setYear(year);
 	cout << "Enter birthdate month: ";
 	is >> month;
-	person.setMonth(month);
+	person.birthdate.setMonth(month);
 	cout << "Enter birthdate day: ";
 	is >> day;
-	person.setDay(day);
+	person.birthdate.setDay(day);
 	cout << "Enter firstname: ";
 	is >> firstname;
 	person.setFirstName(firstname);

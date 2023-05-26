@@ -1,10 +1,12 @@
 #pragma once
 
+#include "IDate.h"
+
 #include <iostream>
 #include <string>
 #include <map>
 
-class Date 
+class Date : public IDate
 {
 private:
     int day;

@@ -2,6 +2,24 @@
 
 std::map<int, int> Date::Validator::monthDaysMap = initMonthDaysMap();
 
+std::map<int, int> Date::Validator::initMonthDaysMap()
+{
+    std::map<int, int> monthDaysMap;
+    monthDaysMap.emplace(std::make_pair(1, 31));  //JANUARY
+    monthDaysMap.emplace(std::make_pair(2, 28));  //FEBRUARY
+    monthDaysMap.emplace(std::make_pair(3, 31));  //MARCH
+    monthDaysMap.emplace(std::make_pair(4, 30));  //APRIL
+    monthDaysMap.emplace(std::make_pair(5, 31));  //MAY
+    monthDaysMap.emplace(std::make_pair(6, 30));  //JUNE
+    monthDaysMap.emplace(std::make_pair(7, 31));  //JULY
+    monthDaysMap.emplace(std::make_pair(8, 31));  //AUGUST
+    monthDaysMap.emplace(std::make_pair(9, 30));  //SEPTEMBER
+    monthDaysMap.emplace(std::make_pair(10, 31)); //OCTOBER
+    monthDaysMap.emplace(std::make_pair(11, 30)); //NOVEMBER
+    monthDaysMap.emplace(std::make_pair(12, 31)); //DECEMBER
+    return monthDaysMap;
+}
+
 Date::Date() : validator()
 {
     day = 1;
@@ -26,24 +44,6 @@ Date::Date(const Date& other) : validator()
 }
 
 Date::~Date() {}
-
-std::map<int, int> Date::Validator::initMonthDaysMap()
-{
-    std::map<int, int> monthDaysMap;
-    monthDaysMap.emplace(std::make_pair(1, 31));  //JANUARY
-    monthDaysMap.emplace(std::make_pair(2, 28));  //FEBRUARY
-    monthDaysMap.emplace(std::make_pair(3, 31));  //MARCH
-    monthDaysMap.emplace(std::make_pair(4, 30));  //APRIL
-    monthDaysMap.emplace(std::make_pair(5, 31));  //MAY
-    monthDaysMap.emplace(std::make_pair(6, 30));  //JUNE
-    monthDaysMap.emplace(std::make_pair(7, 31));  //JULY
-    monthDaysMap.emplace(std::make_pair(8, 31));  //AUGUST
-    monthDaysMap.emplace(std::make_pair(9, 30));  //SEPTEMBER
-    monthDaysMap.emplace(std::make_pair(10, 31)); //OCTOBER
-    monthDaysMap.emplace(std::make_pair(11, 30)); //NOVEMBER
-    monthDaysMap.emplace(std::make_pair(12, 31)); //DECEMBER
-    return monthDaysMap;
-}
 
 int Date::Validator::getDaysByMonth(int month)
 {
@@ -128,7 +128,7 @@ void Date::operator += (int days)
     if (days < 0) 
         *this -= (-days);
     else if (this->day + days <= Date::Validator::getDaysByMonth(month))
-        this->day = this->day + days;
+        this->day += days;
     else 
     {
         int prevMonthDays = Date::Validator::getDaysByMonth(month);
@@ -152,7 +152,7 @@ void Date::operator -= (int days)
     if (days < 0)
         *this += (-days);
     else if (this->day - days >= 1)
-        this->day = this->day - days;
+        this->day -= days;
     else
     {
         int prevMonthDays = Date::Validator::getDaysByMonth(month);
@@ -164,8 +164,8 @@ void Date::operator -= (int days)
             setYear(year - 1);
         }
         int remainder = days - this->day;
-        //Доробити пізніше
         this->day = Date::Validator::getDaysByMonth(month);
+
         *this -= remainder;
     }
 }

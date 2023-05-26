@@ -3,11 +3,12 @@
 #include "Date.h"
 #include "Person.h"
 
-Person::Person()
+Person::Person() : Person(Date(15, 1, 1990), "John", "Doe", "driver", 20000, true)
 {
 }
 
-Person::Person(Date birthdate, std::string firstname, std::string lastname, std::string occupation, int salary, bool sex) : Date(birthdate)
+Person::Person(Date birthdate, std::string firstname, std::string lastname, std::string occupation, int salary, bool sex) 
+	: Date(birthdate)
 {
 	this->firstname = firstname;
 	this->lastname = lastname;
@@ -63,27 +64,27 @@ void Person::setSex(bool sex)
 	this->sex = sex;
 }
 
-std::string Person::getFirstName()
+std::string Person::getFirstName() const
 {
 	return firstname;
 }
 
-std::string Person::getLastName()
+std::string Person::getLastName() const
 {
 	return lastname;
 }
 
-std::string Person::getOccupation()
+std::string Person::getOccupation() const
 {
 	return occupation;
 }
 
-int Person::getSalary()
+int Person::getSalary() const
 {
 	return salary;
 }
 
-bool Person::getSex()
+bool Person::getSex() const
 {
 	return sex;
 }

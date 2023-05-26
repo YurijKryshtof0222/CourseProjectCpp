@@ -1,23 +1,17 @@
-#include <iostream>
-#include <iomanip>
-#include <windows.h>
-
-#include "Date.h"
-#include "Person.h"
-#include "BuildingsQueue.h"
 #include "CourseProject.h"
 
-#define delimeter cout << setw(120) << setfill('-') << "" << endl << endl;
+#define delimeter cout << ANSI_GREEN << setw(120) << setfill('-') << "" << ANSI_RESET << endl;
 
 using namespace std;
 
 const char* ANSI_GREEN = "\x1B[32m";
+const char* ANSI_YELLOW = "\e[0;33m";
 const char* ANSI_RESET = "\033[0m";
 const char* ANSI_MAGENTA = "\x1B[35m";
 const char* ANSI_RED = "\x1B[31m";
 const char* ANSI_BLUE = "\x1B[34m";
 
-BuildingsQueue queue;
+BuildingsQueue buildingsQueue;
 
 void fillDataForQueue() {
     Date date1(24, 4, 2024);
@@ -30,35 +24,88 @@ void fillDataForQueue() {
     Person person3(Date(23, 11, 1993), "Vitaliy", "Tsal'", "mechainic", 12000, true);
     Person person4(Date(16, 6, 2000), "Yana", "Zyst", "hairdresser", 13000, false);
 
-    queue.add(person1, date1);
-    queue.add(person2, date2);
-    queue.add(person3, date3);
-    queue.add(person4, date4);
+    buildingsQueue.add(person1, date1);
+    buildingsQueue.add(person2, date2);
+    buildingsQueue.add(person3, date3);
+    buildingsQueue.add(person4, date4);
+}
+
+void showWithIndexRange()
+{
+    int from;
+    int to;
+
+    cout << "Enter the index from which you want to show the queue: ";
+    cin >> from;
+    from--;
+    buildingsQueue.throwIfIndexIsOutOfBounds(from);
+
+    cout << "Enter the index to which you want to show the queue(inclusively): ";
+    cin >> to;
+    to--;
+    buildingsQueue.throwIfIndexIsOutOfBounds(to);
+
+    BuildingsQueue::Iterator iter = buildingsQueue.at(from);
+    
+    cout << "Buildings Queue { " << endl;
+    for (; from <= to; from++, iter++)
+    {
+        cout << from + 1 << ".)" << iter->first
+             << "Waiting Time: " << iter->second << endl;
+    }
+    cout << "}" << endl;
 }
 
 void addNewPerson()
 {
-    cout << "New person" << endl;
     Person person;
+    Date date;
+    
+    cout << "New person" << endl;
     cin >> person;
     cout << "Enter person waiting time " << endl;
-    Date date;
     cin >> date;
 
-    queue.add(person, date);
+    buildingsQueue.add(person, date);
+}
+
+void incrementWaitingTime()
+{
+    int index, days;
+
+    cout << "Enter person index you want to increment waiting time: ";
+    cin >> index;
+    index--;
+    buildingsQueue.throwIfIndexIsOutOfBounds(index);
+
+    Person person = buildingsQueue.getPerson(index);
+    Date waitingTime = buildingsQueue.getWaitingTime(index);
+
+    cout << index + 1 << ".)" << person.fullname() << endl;
+    cout << "Current waiting time: "<< waitingTime << endl;
+
+    cout << "Enter days you want increment/decrement person waiting time: ";
+    cin >> days;
+
+    waitingTime += days;
+    buildingsQueue.setWaitingTime(index, waitingTime);
+
+    cout << "Updated waiting time: " << waitingTime << endl;
 }
 
 void removePersonFromQueue()
 {
-    cout << "Enter person index you want to remove from queue: ";
     int index;
+    
+    cout << "Enter person index you want to remove from queue: ";
     cin >> index;
-    queue.remove(index - 1);
+
+    buildingsQueue.remove(index - 1);
 }
 
 void showMenu()
 {
-    cout << setw(60) << "BuildingQueue Demo" << endl;
+    cout << setw(60) << "BuildingsQueue Demo" << endl;
 
     bool exit = false;
     int action;
@@ -68,14 +115,16 @@ void showMenu()
         try 
         {
             delimeter;
-            cout << ANSI_MAGENTA << "1.)Show Buildings queue " <<  endl;
-            //cout << "1.)Show Buildings queue with filtration " << endl;
-            cout << "2.)Sort queue by decreasing length of stay" << endl;
-            cout << "3.)Add new person to queue " << endl;
-            cout << "4.)Delete person in queue by index " << endl;
-            cout << "5.)Exit " << ANSI_RESET << endl << endl;
-           
-            //cout << "6.)+= demo " << endl << endl;
+            cout << "1.)Show Buildings queue " <<  endl;
+            cout << "2.)Show Buildings queue with the specified index range" << endl;
+            cout << "3.)Sort queue by decreasing length of stay" << endl;
+            cout << "4.)Add new person to queue " << endl;
+            cout << "5.)Delete person in queue by index " << endl;
+            
+            cout << "6.)Increment/decrement person waiting time" << endl;
+            //cout << "8.)+= demo " << endl << endl;
+
+            cout << "9.)Exit " << endl << endl;
 
             cout << "Choose your action: ";
             cin >> action;
@@ -84,18 +133,24 @@ void showMenu()
             switch (action)
             {
             case 1:
-                cout << queue;
+                cout << buildingsQueue;
                 break;
             case 2:
-                sort();
+                showWithIndexRange();
                 break;
             case 3:
-                addNewPerson();
+                sort();
                 break;
             case 4:
-                removePersonFromQueue();
+                addNewPerson();
                 break;
             case 5:
+                removePersonFromQueue();
+                break;
+            case 6:
+                incrementWaitingTime();
+                break;
+            case 9:
                 exit = true;
                 break;
             default:
@@ -104,18 +159,19 @@ void showMenu()
         }
         catch (std::runtime_error e)
         {
-            cout << e.what() << endl;
+            cout << ANSI_RED   << "Error" 
+                 << ANSI_RESET << ": " << e.what() << endl;
         }
-        cin.clear(); //clear errors/bad flags on cin
-        cin.ignore(cin.rdbuf()->in_avail(), '\n');//precise amount of ignoring
-        cin.rdbuf()->in_avail(); //returns the exact number of characters in the cin buffer.
+        cin.clear();                               //clear errors/bad flags on cin
+        cin.ignore(cin.rdbuf()->in_avail(), '\n'); //precise amount of ignoring
+        cin.rdbuf()->in_avail();                   //returns the exact number of characters in the cin buffer.
     }
 }
 
 void sort()
 {
-    queue.sortByTheLengthOfStay();
-    cout << "Queue was sorted by decreasing waiting time in the queue" << endl;
+    buildingsQueue.sortByTheLengthOfStay();
+    cout << ANSI_BLUE << "Queue was sorted by decreasing waiting time" << ANSI_RESET << endl;
 }
 
 int main()

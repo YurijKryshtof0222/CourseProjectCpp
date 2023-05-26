@@ -1,7 +1,9 @@
 #pragma once
 
 #include "Date.h"
-#include "string.h"
+
+#include <iostream>
+#include <string>
 
 class Person : private Date
 {
@@ -24,7 +26,7 @@ public:
 
 	~Person();
 
-	virtual std::string dateToString() const;
+	std::string dateToString() const override;
 
 	void setFirstName(const std::string&);
 	void setLastName(const std::string&);
@@ -32,11 +34,11 @@ public:
 	void setSalary(int);
 	void setSex(bool);
 
-	std::string getFirstName();
-	std::string getLastName();
-	std::string getOccupation();
-	int  getSalary();
-	bool getSex();
+	std::string getFirstName()  const;
+	std::string getLastName()   const;
+	std::string getOccupation() const;
+	int  getSalary()			const;
+	bool getSex()				const;
 
 	std::string fullname() const;
 

@@ -1,16 +1,19 @@
 #pragma once
 
-#include <iostream>
-#include <iomanip>
-#include <windows.h>
-
 #include "Date.h"
 #include "Person.h"
 #include "BuildingsQueue.h"
 
+#include <iostream>
+#include <iomanip>
+#include <windows.h>
+
 void fillDataForQueue();
-void showMenu();
+void showWithIndexRange();
 void sort();
 void addNewPerson();
+void incrementWaitingTime();
 void removePersonFromQueue();
+void showMenu();
+
 int main();

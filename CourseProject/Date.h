@@ -46,9 +46,9 @@ public:
     virtual std::string dateToString() const;
 
     // методи встановлення значень полів
-    virtual void setDay(int day);
-    virtual void setMonth(int month);
-    virtual void setYear(int year);
+    void setDay(int day);
+    void setMonth(int month);
+    void setYear(int year);
 
     void operator += (int days);
     void operator -= (int days);

@@ -1,4 +1,3 @@
-#include <iostream>
 #include "Date.h"
 
 std::map<int, int> Date::Validator::monthDaysMap = initMonthDaysMap();

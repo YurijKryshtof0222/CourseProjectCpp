@@ -155,6 +155,11 @@ namespace CourseProjectCSharp.classes
             return string.Format("{0}.{1}{2}.{3}", Day, Month < 10 ? "0" : "", Month, Year);
         }
 
+        public override string ToString()
+        {
+            return DateToString();
+        }
+
         public object Clone()
         {
             return new Date(this);

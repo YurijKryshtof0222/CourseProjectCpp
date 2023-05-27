@@ -127,15 +127,25 @@ std::istream& operator >> (std::istream& is, Person& person)
 	cout << "Enter birthdate day: ";
 	is >> day;
 	person.birthdate.setDay(day);
+
 	cout << "Enter firstname: ";
-	is >> firstname;
+	/*is >> firstname;*/
+	is.ignore();
+	getline(is, firstname);
 	person.setFirstName(firstname);
+
 	cout << "Enter lastname: ";
-	is >> lastname;
+	/*is >> lastname;*/
+	is.ignore();
+	getline(is, lastname);
 	person.setLastName(lastname);
+
 	cout << "Enter occupation: ";
-	is >> occupation;
+	/*is >> occupation;*/
+	is.ignore();
+	getline(is, occupation);
 	person.setOccupation(occupation);
+
 	cout << "Enter salary: ";
 	is >> salary;
 	person.setSalary(salary);

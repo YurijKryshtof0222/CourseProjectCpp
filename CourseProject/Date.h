@@ -55,8 +55,9 @@ public:
     void operator += (int days);
     void operator -= (int days);
 
-    void operator = (const Date& other);
+    void operator = (const Date&);
     bool operator > (const Date&);
+    bool operator < (const Date&);
 
     friend std::ostream& operator << (std::ostream& os, const Date& date);
     friend std::istream& operator >> (std::istream& os, Date& date);

@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Xml.Linq;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CourseProjectCSharp.classes
 {
-    public class Date : ICloneable
+    public class Date : IDate, ICloneable, IComparable
     {
         private readonly static Dictionary<int, int> monthDaysDictionary;
 
@@ -135,13 +138,36 @@ namespace CourseProjectCSharp.classes
             return date -= remainder;
         }
 
+        public static bool operator > (Date date1, Date date2)
+        {
+            return date1.CompareTo (date2) < 0;
+        }
+
+        public static bool operator < (Date date1, Date date2)
+        {
+            return date1.CompareTo(date2) > 0;
+        }
+
         //public static Date operator =(Date date1) => new(date1);
+
+        public string DateToString()
+        {
+            return string.Format("{0}.{1}{2}.{3}", Day, Month < 10 ? "0" : "", Month, Year);
+        }
 
         public object Clone()
         {
             return new Date(this);
         }
 
+        public int CompareTo(object obj)
+        {
+            Date another = (Date)obj;
+
+            if (this.year  != another.year)     return this.year.CompareTo(another.year);
+            if (this.month != another.month)    return this.month.CompareTo(another.month);
+            return this.day.CompareTo(another.day);
+        }
     }
 
 }

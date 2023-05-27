@@ -1,18 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CourseProjectCSharp.classes
 {
-    public class Person : Date, ICloneable
+    public class Person : IDate, ICloneable
     {
+        private Date birthdate;
         private string firstname;
         private string lastname;
         private string occupation;
         private bool sex;
         private int salary;
+        private Date waitingTime;
+
+        public Date Birthdate
+        {
+            get { return birthdate; }
+            set
+            {
+                if (value == null)
+                    throw new ArgumentNullException("Bithdate value must not be null.");
+                birthdate = value;
+            }
+        }
 
         public string Firstname 
         {
@@ -20,7 +34,7 @@ namespace CourseProjectCSharp.classes
             set 
             {
                 if (value == null || value.Trim().Equals(""))
-                    throw new ArgumentException("Firstname must not be empty");
+                    throw new ArgumentNullException("Firstname must not be empty.");
                 firstname = value; 
             }
         }
@@ -31,7 +45,7 @@ namespace CourseProjectCSharp.classes
             set
             {
                 if (value == null || value.Trim().Equals(""))
-                    throw new ArgumentException("Lastname must not be empty");
+                    throw new ArgumentNullException("Lastname must not be empty.");
                 lastname = value;
             } 
         }
@@ -42,7 +56,7 @@ namespace CourseProjectCSharp.classes
             set
             {
                 if (value == null || value.Trim().Equals(""))
-                    throw new ArgumentException("Occupation value must not be empty");
+                    throw new ArgumentNullException("Occupation value must not be empty.");
                 occupation = value;
             }
         }
@@ -56,36 +70,63 @@ namespace CourseProjectCSharp.classes
         public int Salary
         {
             get { return salary; }
-            set { salary = value; }
+            set 
+            {
+                if (value < 0)
+                    throw new ArgumentOutOfRangeException("Salary value must not be less than 0.");
+                salary = value; 
+            }
         }
 
-        public Person(Date birthdate, string firstname, string lastname, string occupation, bool sex, int salary)
+        public Date WaitingTime
         {
-            Year = birthdate.Year;
-            Month = birthdate.Month;
-            Day = birthdate.Day;
+            get { return waitingTime; }
+            set
+            {
+                if (value == null)
+                    throw new ArgumentNullException("Waiting time date value must not be null.");
+                waitingTime = value;
+            }
+        }
 
+        public Person(Date birthdate, string firstname, string lastname, string occupation, bool sex, int salary, Date waitingTime)
+        {
+            Birthdate = birthdate;
             Firstname = firstname;
             Lastname = lastname;
             Occupation = occupation;
             Sex = sex;
             Salary = salary;
+            WaitingTime = waitingTime;
         }
 
-        public Person() : this(new Date(15, 1, 1990), "John", "Doe", "driver", true, 20000)
+        public Person() : this(new Date(15, 1, 1990), "John", "Doe", "driver", true, 20000, new Date(25, 1, 2010))
         { }
 
         public Person(Person other)
         {
-            Year = other.Year;
-            Month = other.Month;
-            Year = other.Day;
-
+            Birthdate = other.Birthdate;
             Firstname = other.Firstname;
             Lastname = other.Lastname;
             Occupation = other.Occupation;
             Sex = other.Sex;
             Salary = other.Salary;
+            WaitingTime = other.WaitingTime;
         }
+
+        ~Person()
+        { }
+
+        public string DateToString()
+        {
+            return string.Format("{0}_{1}{2}_{3}", Birthdate.Year, Birthdate.Month < 10 ? "0" : "", Birthdate.Month, Birthdate.Day);
+        }
+
+        public object Clone()
+        {
+            return new Person(this);
+        }
+
     }
+
 }

@@ -184,6 +184,13 @@ bool Date::operator > (const Date& another)
     return this->day > another.day;
 }
 
+bool Date::operator < (const Date& another)
+{
+    if (this->year != another.year) return this->year < another.year;
+    if (this->month != another.month) return this->month < another.month;
+    return this->day < another.day;
+}
+
 std::ostream& operator << (std::ostream& os, const Date& date)
 {
     os << date.dateToString();

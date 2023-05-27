@@ -114,8 +114,8 @@ void lateBindingDemoMenu()
     IDate *date1 = new Date(24, 4, 2022);
     IDate *date2 = new Person;
 
-    cout << "Date format from Date object "   << date1->dateToString() << endl;
-    cout << "Date format from Person object " << date2->dateToString() << endl;
+    cout << "Date format from Date object:\t" << ANSI_YELLOW << date1->dateToString() << ANSI_RESET << endl;
+    cout << "Date format from Person object:\t"<< ANSI_YELLOW << date2->dateToString() << ANSI_RESET << endl;
 }
 
 void showMainMenu()

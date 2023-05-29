@@ -64,10 +64,10 @@ void addNewPersonMenu()
     Person person;
     Date date;
     
-    cout << "New person" << endl;
-    cin >> person;
+    cout << ANSI_YELLOW << "New person" << ANSI_RESET << endl;
+    person = enterDataForNewPerson();
     cout << "Enter person waiting time: " << endl;
-    cin >> date;
+    date = enterDataForDate();
 
     buildingsQueue.add(person, date);
     cout << ANSI_GREEN << "Person has been added to queue successfully" << ANSI_RESET << endl;
@@ -188,6 +188,80 @@ void showMainMenu()
         cin.ignore(cin.rdbuf()->in_avail(), '\n'); //precise amount of ignoring
         cin.rdbuf()->in_avail();                   //returns the exact number of characters in the cin buffer.
     }
+}
+
+Person enterDataForNewPerson()
+{
+    std::string firstname;
+    std::string lastname;
+    std::string occupation;
+    char sexCh;
+    int salary;
+
+    int day;
+    int month;
+    int year;
+
+    Person person;
+    
+    cout << "Enter birthdate year: ";
+    cin >> year;
+    person.getBirthDate().setYear(year);
+    cout << "Enter birthdate month: ";
+    cin >> month;
+    person.getBirthDate().setMonth(month);
+    cout << "Enter birthdate day: ";
+    cin >> day;
+    person.getBirthDate().setDay(day);
+
+    cout << "Enter firstname: ";
+
+    cin.ignore();
+    getline(cin, firstname);
+    person.setFirstName(firstname);
+
+    cout << "Enter lastname: ";
+
+    cin.ignore();
+    getline(cin, lastname);
+    person.setLastName(lastname);
+
+    cout << "Enter occupation: ";
+
+    cin.ignore();
+    getline(cin, occupation);
+    person.setOccupation(occupation);
+
+    cout << "Enter salary: ";
+    cin >> salary;
+    person.setSalary(salary);
+
+    cout << "Enter sex(m/w): ";
+    cin >> sexCh;
+
+    gender sex = sexCh == 'm' ? MALE : FEMALE;
+    person.setGender(sex);
+
+    return person;
+}
+
+Date enterDataForDate()
+{
+    int day, month, year;
+
+    Date date;
+
+    cout << "Enter year: ";
+    cin >> year;
+    date.setYear(year);
+    cout << "Enter month: ";
+    cin >> month;
+    date.setMonth(month);
+    cout << "Enter day: ";
+    cin >> day;
+    date.setDay(day);
+
+    return date;
 }
 
 int main()

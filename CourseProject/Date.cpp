@@ -195,28 +195,14 @@ std::ostream& operator << (std::ostream& os, const Date& date)
 
 std::istream& operator >> (std::istream& is, Date& date)
 {    
-    using namespace std;
-    
     int day, month, year;
     
-    try 
-    {
-        cout << "Enter day: ";
-        is >> day;
-        cout << "Enter month: ";
-        is >> month;
-        date.setMonth(month);
-        date.setDay(day);
-        cout << "Enter year: ";
-        is >> year;
-        date.setYear(year);
+    is >> year;
+    date.setYear(year);
+    is >> month;
+    date.setMonth(month);
+    is >> day;
+    date.setDay(day);
        
-        return is;
-    }
-
-    catch (std::runtime_error& e)
-    {
-        std::cerr << e.what() << std::endl;
-    }
-    
+    return is;
 }

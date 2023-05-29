@@ -31,6 +31,14 @@ std::string Person::fullname() const
 	return firstname + " " + lastname;
 }
 
+void Person::setBirthDate(const Date birthdate)
+{
+	if (&birthdate == nullptr)
+		throw std::runtime_error("Date value must be not empty!");
+
+	this->birthdate = birthdate;
+}
+
 void Person::setFirstName(const std::string& firstname)
 {
 	if (&firstname == nullptr || firstname.empty())
@@ -62,6 +70,11 @@ void Person::setSalary(int salary)
 void Person::setGender(gender sex)
 {
 	this->sex = sex;
+}
+
+Date Person::getBirthDate() const
+{
+	return birthdate;
 }
 
 std::string Person::getFirstName() const
@@ -107,51 +120,30 @@ std::istream& operator >> (std::istream& is, Person& person)
 	std::string firstname;
 	std::string lastname;
 	std::string occupation;
-	char sexCh;
+	char sexChar;
 	int salary;
 
 	int day;
 	int month;
 	int year;
-	
-	using namespace std;
 
-	cout << "Enter birthdate year: ";
 	is >> year;
 	person.birthdate.setYear(year);
-	cout << "Enter birthdate month: ";
 	is >> month;
 	person.birthdate.setMonth(month);
-	cout << "Enter birthdate day: ";
 	is >> day;
 	person.birthdate.setDay(day);
 
-	cout << "Enter firstname: ";
-	/*is >> firstname;*/
-	is.ignore();
-	getline(is, firstname);
+	is >> firstname;
 	person.setFirstName(firstname);
-
-	cout << "Enter lastname: ";
-	/*is >> lastname;*/
-	is.ignore();
-	getline(is, lastname);
+	is >> lastname;
 	person.setLastName(lastname);
-
-	cout << "Enter occupation: ";
-	/*is >> occupation;*/
-	is.ignore();
-	getline(is, occupation);
+	is >> occupation;
 	person.setOccupation(occupation);
-
-	cout << "Enter salary: ";
 	is >> salary;
 	person.setSalary(salary);
-
-	cout << "Enter sex(m/w): ";
-	is >> sexCh;
-
-	gender sex = sexCh == 'm' ? MALE : FEMALE;
+	is >> sexChar;
+	gender sex = sexChar == 'm' ? MALE : FEMALE;
 	person.setGender(sex);
 
 	return is;

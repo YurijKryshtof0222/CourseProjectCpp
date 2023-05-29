@@ -32,12 +32,14 @@ public:
 
 	std::string dateToString() const override;
 
+	void setBirthDate(const Date);
 	void setFirstName(const std::string&);
 	void setLastName(const std::string&);
 	void setOccupation(const std::string&);
 	void setSalary(int);
 	void setGender(gender);
 
+	Date getBirthDate()			const;
 	std::string getFirstName()  const;
 	std::string getLastName()   const;
 	std::string getOccupation() const;

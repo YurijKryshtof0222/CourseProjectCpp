@@ -19,4 +19,7 @@ void removePersonFromQueueMenu();
 void lateBindingDemoMenu();
 void showMainMenu();
 
+Person enterDataForNewPerson();
+Date enterDataForDate();
+
 int main();

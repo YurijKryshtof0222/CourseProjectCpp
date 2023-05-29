@@ -1,8 +1,8 @@
 #include "Date.h"
 
-std::map<int, int> Date::Validator::monthDaysMap = initMonthDaysMap();
+std::map<int, int> Date::monthDaysMap = initMonthDaysMap();
 
-std::map<int, int> Date::Validator::initMonthDaysMap()
+std::map<int, int> Date::initMonthDaysMap()
 {
     std::map<int, int> monthDaysMap;
     monthDaysMap.emplace(std::make_pair(1, 31));  //JANUARY
@@ -20,23 +20,23 @@ std::map<int, int> Date::Validator::initMonthDaysMap()
     return monthDaysMap;
 }
 
-Date::Date() : validator()
+Date::Date()
 {
     day = 1;
     month = 1;
     year = 1900;
 }
 
-Date::Date(int d, int m, int y) : day(d), month(m), year(y), validator()
+Date::Date(int d, int m, int y) : day(d), month(m), year(y)
 {
-    validator.validateAll(d, m, y);
+    validateAll(d, m, y);
 
     /*this->day = d;
     this->month = m;
     this->year = y;*/
 }
 
-Date::Date(const Date& other) : validator()
+Date::Date(const Date& other)
 { 
     this->day = other.day;
     this->month = other.month;
@@ -45,57 +45,52 @@ Date::Date(const Date& other) : validator()
 
 Date::~Date() {}
 
-int Date::Validator::getDaysByMonth(int month)
+int Date::getDaysByMonth(int month)
 {
     return monthDaysMap.at(month);
 }
 
-Date::Validator::Validator()
-{
-    
-}
-
-void Date::Validator::validateDay(int month, int day)
+void Date::validateDay(int month, int day)
 {
     if (day < 1 || day > monthDaysMap.at(month))
         throw std::runtime_error("Incorrect day value!");
 }
 
-void Date::Validator::validateMonth(int month)
+void Date::validateMonth(int month)
 {
     if (month < 1 || month > 12)
         throw std::runtime_error("Incorrect month value!");
 }
 
-void Date::Validator::validateYear(int year)
+void Date::validateYear(int year)
 {
     if (year < 1900 || year > 2100)
         throw std::runtime_error("Incorrect year value!");
 }
 
-void Date::Validator::validateAll(int day, int month, int year)
+void Date::validateAll(int day, int month, int year)
 {
+    validateYear(year);
     validateMonth(month);
     validateDay(month, day);
-    validateYear(year);
 }
 
 // Методи налаштування значень полів
 void Date::setDay(int day)
 {
-    validator.validateDay(month, day);
+    validateDay(month, day);
     this->day = day;
 }
 
 void Date::setMonth(int month) 
 {
-    validator.validateMonth(month);
+    validateMonth(month);
     this->month = month;
 }
 
 void Date::setYear(int year) 
 {
-    validator.validateYear(year);
+    validateYear(year);
     this->year = year;
 }
 
@@ -117,7 +112,8 @@ int Date::getYear() const
 
 std::string Date::dateToString() const
 {
-    return std::to_string(day) 
+    return      (day < 10 ? "0" : "")
+        +       std::to_string(day)
         + "." + (month < 10 ? "0" : "") 
               + std::to_string(month)
         + "." + std::to_string(year);
@@ -127,11 +123,11 @@ void Date::operator += (int days)
 {
     if (days < 0) 
         *this -= (-days);
-    else if (this->day + days <= Date::Validator::getDaysByMonth(month))
+    else if (this->day + days <= Date::getDaysByMonth(month))
         this->day += days;
     else 
     {
-        int prevMonthDays = Date::Validator::getDaysByMonth(month);
+        int prevMonthDays = Date::getDaysByMonth(month);
         if (this->month < 12)
             this->month++;
         else 
@@ -155,7 +151,7 @@ void Date::operator -= (int days)
         this->day -= days;
     else
     {
-        int prevMonthDays = Date::Validator::getDaysByMonth(month);
+        int prevMonthDays = Date::getDaysByMonth(month);
         if (this->month > 1)
             this->month--;
         else
@@ -164,7 +160,7 @@ void Date::operator -= (int days)
             setYear(year - 1);
         }
         int remainder = days - this->day;
-        this->day = Date::Validator::getDaysByMonth(month);
+        this->day = Date::getDaysByMonth(month);
 
         *this -= remainder;
     }

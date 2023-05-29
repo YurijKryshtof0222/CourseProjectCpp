@@ -1,36 +1,28 @@
 #pragma once
 
-#include "IDate.h"
+#include "IDateStringFormatRetriever.h"
 
 #include <iostream>
 #include <string>
 #include <map>
 
-class Date : public IDate
+class Date : public IDateStringFormatRetriever
 {
 private:
+    static std::map<int, int> monthDaysMap;
+    static std::map<int, int> initMonthDaysMap();
+
+    static int getDaysByMonth(int month);
+
+    static void validateDay(int month, int day);
+    static void validateMonth(int month);
+    static void validateYear(int year);
+
+    static void validateAll(int day, int month, int year);
+    
     int day;
     int month;
     int year;
-
-    class Validator
-    {
-    private:
-        static std::map<int, int> monthDaysMap;
-        static std::map<int, int> initMonthDaysMap();
-    public:
-        static int getDaysByMonth(int month);
-        
-        Validator();
-
-        void validateDay(int month, int day);
-        void validateMonth(int month);
-        void validateYear(int year);
-
-        void validateAll(int day, int month, int year);
-    };
-
-    Validator validator;
 public:
     // конструктори
     Date();

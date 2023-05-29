@@ -13,7 +13,7 @@ namespace CourseProjectCSharp.classes
         {
             this.Sort((Person x, Person y) =>
             {
-                return x.WaitingTime.CompareTo(y.WaitingTime);
+                return -(x.WaitingTime.CompareTo(y.WaitingTime));
             });
         }
 

@@ -1,12 +1,14 @@
 #pragma once
 
 #include "Date.h"
-#include "IDate.h"
+#include "IDateStringFormatRetriever.h"
+#include "gender.h"
 
 #include <iostream>
 #include <string>
 
-class Person : public IDate
+
+class Person : public IDateStringFormatRetriever
 {
 private:
 	Date birthdate;
@@ -14,7 +16,7 @@ private:
 	std::string lastname;
 	std::string occupation;
 	int salary;
-	bool sex;
+	gender sex;
 
 public:
 	Person();
@@ -24,7 +26,7 @@ public:
 		std::string lastname,
 		std::string occupation,
 		int salary,
-		bool sex);
+		gender sex);
 
 	~Person();
 
@@ -34,13 +36,13 @@ public:
 	void setLastName(const std::string&);
 	void setOccupation(const std::string&);
 	void setSalary(int);
-	void setSex(bool);
+	void setGender(gender);
 
 	std::string getFirstName()  const;
 	std::string getLastName()   const;
 	std::string getOccupation() const;
 	int  getSalary()			const;
-	bool getSex()				const;
+	gender getGender()			const;
 
 	std::string fullname() const;
 

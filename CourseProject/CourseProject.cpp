@@ -18,10 +18,10 @@ void fillDataForQueue() {
     Date date3(17, 5, 2023);
     Date date4(17, 3, 2024);
     
-    Person person1(Date(28, 9, 1997),  "Oleksii", "Pryadko", "software engineer", 20000, true);
-    Person person2(Date(15, 10, 1985), "Oleh", "Vynnyk", "SEO", 40000, true);
-    Person person3(Date(23, 11, 1993), "Vitalii", "Tsal'", "mechainic", 12000, true);
-    Person person4(Date(16, 6, 2000),  "Yana", "Zyst", "hairdresser", 13000, false);
+    Person person1(Date(28, 9, 1997),  "Oleksii", "Pryadko", "software engineer", 20000, MALE);
+    Person person2(Date(15, 10, 1985), "Oleh", "Vynnyk", "SEO", 40000, MALE);
+    Person person3(Date(23, 11, 1993), "Vitalii", "Tsal'", "mechainic", 12000, MALE);
+    Person person4(Date(16, 6, 2000),  "Yana", "Zyst", "hairdresser", 13000, FEMALE);
 
     buildingsQueue.add(person1, date1);
     buildingsQueue.add(person2, date2);
@@ -111,11 +111,14 @@ void removePersonFromQueueMenu()
 
 void lateBindingDemoMenu()
 {
-    IDate *date1 = new Date(24, 4, 2022);
-    IDate *date2 = new Person;
+    IDateStringFormatRetriever *date1 = new Date(24, 4, 2022);
+    IDateStringFormatRetriever *date2 = new Person;
 
     cout << "Date format from Date object:\t" << ANSI_YELLOW << date1->dateToString() << ANSI_RESET << endl;
     cout << "Date format from Person object:\t"<< ANSI_YELLOW << date2->dateToString() << ANSI_RESET << endl;
+
+    delete date1;
+    delete date2;
 }
 
 void showMainMenu()

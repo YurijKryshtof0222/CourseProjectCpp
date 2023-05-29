@@ -1,13 +1,13 @@
 #include "BuildingsQueue.h"
 
-bool BuildingsQueue::utilCompareFunction(std::pair<Person, Date> i, std::pair<Person, Date> j)
+bool BuildingsQueue::utilCompareFunction(personDatePair i, personDatePair j)
 {
 	return i.second > j.second;
 }
 
 void BuildingsQueue::add(Person person, Date date)
 {
-	array.push_back(std::pair<Person, Date>(person, date));
+	array.push_back(personDatePair(person, date));
 }
 
 void BuildingsQueue::remove(int index)
@@ -30,7 +30,6 @@ Date BuildingsQueue::getWaitingTime(int index) const
 {
 	if (isIndexOutOfBounds(index))
 		throw std::runtime_error("index is out of bounds");
-
 
 	return array[index].second;
 }

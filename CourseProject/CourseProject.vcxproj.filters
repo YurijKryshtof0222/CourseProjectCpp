@@ -41,7 +41,10 @@
     <ClInclude Include="CourseProject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="IDate.h">
+    <ClInclude Include="IDateStringFormatRetriever.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gender.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

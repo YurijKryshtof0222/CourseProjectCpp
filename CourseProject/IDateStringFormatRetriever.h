@@ -2,7 +2,8 @@
 
 #include <string>
 
-class IDate {
+class IDateStringFormatRetriever 
+{
 public:
 	virtual std::string dateToString() const = 0;
 };

@@ -10,19 +10,21 @@
 
 class BuildingsQueue
 {
+	using personDatePair = std::pair<Person, Date>;
 private:
-	std::vector<std::pair<Person, Date>> array;
+	std::vector<personDatePair> array;
 public:
 	class Iterator
 	{
 	public:
 		using iterator_category = std::forward_iterator_tag;
 		using difference_type	= std::ptrdiff_t;
-		using value_type		= std::pair<Person, Date>;
-		using pointer			= std::pair<Person, Date>*;
-		using reference			= std::pair<Person, Date>&;
+		using value_type		= personDatePair;
+		using pointer			= personDatePair*;
+		using reference			= personDatePair&;
 
 		Iterator(pointer ptr) : m_ptr(ptr) {}
+		Iterator() : m_ptr(nullptr) {}
 
 		reference operator * () const { return *m_ptr; }
 		pointer	  operator  -> () { return m_ptr; }
@@ -36,16 +38,16 @@ public:
 		pointer m_ptr;
 	};
 
-	static bool utilCompareFunction(std::pair<Person, Date>, std::pair<Person, Date>);
+	static bool utilCompareFunction(personDatePair, personDatePair);
 	
 	void add(Person, Date);
 	void remove(int index);
 
-	Person getPerson(int)			const;
-	Date getWaitingTime(int)		const;
+	Person getPerson(int index)			const;
+	Date getWaitingTime(int index)		const;
 
-	void setPerson(int, Person);
-	void setWaitingTime(int, Date);
+	void setPerson(int index, Person);
+	void setWaitingTime(int index, Date);
 
 	void sortByTheLengthOfStay();
 

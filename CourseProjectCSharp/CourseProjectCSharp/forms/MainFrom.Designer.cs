@@ -30,9 +30,18 @@
         {
             dataGridView1 = new DataGridView();
             panel1 = new Panel();
-            button1 = new Button();
-            removeBtn = new Button();
-            AddPersonBtn = new Button();
+            panel4 = new Panel();
+            changePersonBtn = new Button();
+            editorLabel = new Label();
+            sortBtn = new Button();
+            removePersonBtn = new Button();
+            addPersonBtn = new Button();
+            panel3 = new Panel();
+            writeXMLbtn = new Button();
+            loadXMLBtn = new Button();
+            label4 = new Label();
+            exitBtn = new Button();
+            lateBindingDemoBtn = new Button();
             panel2 = new Panel();
             displayWithSpecifiedBtn = new Button();
             toIndexTB = new TextBox();
@@ -40,19 +49,11 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
-            button2 = new Button();
-            button3 = new Button();
-            label4 = new Label();
-            button4 = new Button();
-            button5 = new Button();
-            panel3 = new Panel();
-            panel4 = new Panel();
-            editorLabel = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
-            panel2.SuspendLayout();
-            panel3.SuspendLayout();
             panel4.SuspendLayout();
+            panel3.SuspendLayout();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // dataGridView1
@@ -65,51 +66,147 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.Height = 27;
-            dataGridView1.Size = new Size(750, 340);
+            dataGridView1.Size = new Size(750, 374);
             dataGridView1.TabIndex = 0;
             // 
             // panel1
             // 
+            panel1.BorderStyle = BorderStyle.FixedSingle;
             panel1.Controls.Add(panel4);
             panel1.Controls.Add(panel3);
-            panel1.Controls.Add(button3);
-            panel1.Controls.Add(button2);
+            panel1.Controls.Add(exitBtn);
+            panel1.Controls.Add(lateBindingDemoBtn);
             panel1.Controls.Add(panel2);
             panel1.Location = new Point(768, 12);
             panel1.Name = "panel1";
-            panel1.Size = new Size(225, 340);
+            panel1.Size = new Size(225, 374);
             panel1.TabIndex = 4;
-            panel1.Paint += panel1_Paint;
             // 
-            // button1
+            // panel4
             // 
-            button1.Location = new Point(3, 84);
-            button1.Name = "button1";
-            button1.Size = new Size(216, 45);
-            button1.TabIndex = 3;
-            button1.Text = "Sort queue by decreasing waiting time";
-            button1.UseVisualStyleBackColor = true;
+            panel4.BorderStyle = BorderStyle.FixedSingle;
+            panel4.Controls.Add(changePersonBtn);
+            panel4.Controls.Add(editorLabel);
+            panel4.Controls.Add(sortBtn);
+            panel4.Controls.Add(removePersonBtn);
+            panel4.Controls.Add(addPersonBtn);
+            panel4.Location = new Point(3, 137);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(219, 172);
+            panel4.TabIndex = 8;
             // 
-            // removeBtn
+            // changePersonBtn
             // 
-            removeBtn.Location = new Point(3, 54);
-            removeBtn.Name = "removeBtn";
-            removeBtn.Size = new Size(214, 24);
-            removeBtn.TabIndex = 2;
-            removeBtn.Text = "Remove person";
-            removeBtn.UseVisualStyleBackColor = true;
+            changePersonBtn.Location = new Point(7, 54);
+            changePersonBtn.Name = "changePersonBtn";
+            changePersonBtn.Size = new Size(210, 26);
+            changePersonBtn.TabIndex = 5;
+            changePersonBtn.Text = "Change person info";
+            changePersonBtn.UseVisualStyleBackColor = true;
+            changePersonBtn.Click += changePersonBtn_Click;
             // 
-            // AddPersonBtn
+            // editorLabel
             // 
-            AddPersonBtn.Location = new Point(5, 25);
-            AddPersonBtn.Name = "AddPersonBtn";
-            AddPersonBtn.Size = new Size(214, 23);
-            AddPersonBtn.TabIndex = 1;
-            AddPersonBtn.Text = "Add new person";
-            AddPersonBtn.UseVisualStyleBackColor = true;
+            editorLabel.AutoSize = true;
+            editorLabel.Location = new Point(7, 7);
+            editorLabel.Name = "editorLabel";
+            editorLabel.Size = new Size(43, 17);
+            editorLabel.TabIndex = 4;
+            editorLabel.Text = "Editor";
+            // 
+            // sortBtn
+            // 
+            sortBtn.Location = new Point(8, 116);
+            sortBtn.Name = "sortBtn";
+            sortBtn.Size = new Size(208, 45);
+            sortBtn.TabIndex = 3;
+            sortBtn.Text = "Sort queue by decreasing waiting time";
+            sortBtn.UseVisualStyleBackColor = true;
+            sortBtn.Click += sortBtn_Click;
+            // 
+            // removePersonBtn
+            // 
+            removePersonBtn.Location = new Point(9, 86);
+            removePersonBtn.Name = "removePersonBtn";
+            removePersonBtn.Size = new Size(208, 24);
+            removePersonBtn.TabIndex = 2;
+            removePersonBtn.Text = "Remove person";
+            removePersonBtn.UseVisualStyleBackColor = true;
+            removePersonBtn.Click += removePersonBtn_Click;
+            // 
+            // addPersonBtn
+            // 
+            addPersonBtn.Location = new Point(5, 25);
+            addPersonBtn.Name = "addPersonBtn";
+            addPersonBtn.Size = new Size(210, 23);
+            addPersonBtn.TabIndex = 1;
+            addPersonBtn.Text = "Add new person";
+            addPersonBtn.UseVisualStyleBackColor = true;
+            addPersonBtn.Click += addPersonBtn_Click;
+            // 
+            // panel3
+            // 
+            panel3.BorderStyle = BorderStyle.FixedSingle;
+            panel3.Controls.Add(writeXMLbtn);
+            panel3.Controls.Add(loadXMLBtn);
+            panel3.Controls.Add(label4);
+            panel3.Location = new Point(3, 101);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(216, 35);
+            panel3.TabIndex = 7;
+            // 
+            // writeXMLbtn
+            // 
+            writeXMLbtn.Location = new Point(144, 5);
+            writeXMLbtn.Name = "writeXMLbtn";
+            writeXMLbtn.Size = new Size(72, 23);
+            writeXMLbtn.TabIndex = 2;
+            writeXMLbtn.Text = "Write";
+            writeXMLbtn.UseVisualStyleBackColor = true;
+            writeXMLbtn.Click += writeXMLbtn_Click;
+            // 
+            // loadXMLBtn
+            // 
+            loadXMLBtn.Location = new Point(63, 5);
+            loadXMLBtn.Name = "loadXMLBtn";
+            loadXMLBtn.Size = new Size(74, 25);
+            loadXMLBtn.TabIndex = 1;
+            loadXMLBtn.Text = "Load";
+            loadXMLBtn.UseVisualStyleBackColor = true;
+            loadXMLBtn.Click += loadXMLBtn_Click;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(7, 11);
+            label4.Name = "label4";
+            label4.Size = new Size(55, 17);
+            label4.TabIndex = 0;
+            label4.Text = "XML file";
+            // 
+            // exitBtn
+            // 
+            exitBtn.Location = new Point(5, 348);
+            exitBtn.Name = "exitBtn";
+            exitBtn.Size = new Size(216, 23);
+            exitBtn.TabIndex = 6;
+            exitBtn.Text = "Exit";
+            exitBtn.UseVisualStyleBackColor = true;
+            exitBtn.Click += exitBtn_Click;
+            // 
+            // lateBindingDemoBtn
+            // 
+            lateBindingDemoBtn.Location = new Point(6, 315);
+            lateBindingDemoBtn.Name = "lateBindingDemoBtn";
+            lateBindingDemoBtn.Size = new Size(214, 27);
+            lateBindingDemoBtn.TabIndex = 5;
+            lateBindingDemoBtn.Text = "Late binding Demo";
+            lateBindingDemoBtn.UseVisualStyleBackColor = true;
+            lateBindingDemoBtn.Click += lateBindingDemoBtn_Click;
             // 
             // panel2
             // 
+            panel2.BorderStyle = BorderStyle.FixedSingle;
             panel2.Controls.Add(displayWithSpecifiedBtn);
             panel2.Controls.Add(toIndexTB);
             panel2.Controls.Add(fromIndexTB);
@@ -120,7 +217,6 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(219, 95);
             panel2.TabIndex = 0;
-            panel2.Paint += panel2_Paint_1;
             // 
             // displayWithSpecifiedBtn
             // 
@@ -130,7 +226,7 @@
             displayWithSpecifiedBtn.TabIndex = 8;
             displayWithSpecifiedBtn.Text = "Display";
             displayWithSpecifiedBtn.UseVisualStyleBackColor = true;
-            displayWithSpecifiedBtn.Click += button1_Click;
+            displayWithSpecifiedBtn.Click += displayBtn_Click;
             // 
             // toIndexTB
             // 
@@ -145,7 +241,6 @@
             fromIndexTB.Name = "fromIndexTB";
             fromIndexTB.Size = new Size(85, 25);
             fromIndexTB.TabIndex = 5;
-            fromIndexTB.TextChanged += textBox1_TextChanged;
             // 
             // label3
             // 
@@ -174,100 +269,24 @@
             label1.TabIndex = 1;
             label1.Text = "from:";
             // 
-            // button2
-            // 
-            button2.Location = new Point(5, 275);
-            button2.Name = "button2";
-            button2.Size = new Size(214, 27);
-            button2.TabIndex = 5;
-            button2.Text = "Late binding Demo";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
-            // 
-            // button3
-            // 
-            button3.Location = new Point(5, 308);
-            button3.Name = "button3";
-            button3.Size = new Size(216, 23);
-            button3.TabIndex = 6;
-            button3.Text = "Exit";
-            button3.UseVisualStyleBackColor = true;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(7, 11);
-            label4.Name = "label4";
-            label4.Size = new Size(55, 17);
-            label4.TabIndex = 0;
-            label4.Text = "XML file";
-            // 
-            // button4
-            // 
-            button4.Location = new Point(63, 5);
-            button4.Name = "button4";
-            button4.Size = new Size(74, 25);
-            button4.TabIndex = 1;
-            button4.Text = "Load";
-            button4.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            button5.Location = new Point(144, 5);
-            button5.Name = "button5";
-            button5.Size = new Size(72, 23);
-            button5.TabIndex = 2;
-            button5.Text = "Write";
-            button5.UseVisualStyleBackColor = true;
-            // 
-            // panel3
-            // 
-            panel3.Controls.Add(button5);
-            panel3.Controls.Add(button4);
-            panel3.Controls.Add(label4);
-            panel3.Location = new Point(3, 101);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(216, 35);
-            panel3.TabIndex = 7;
-            // 
-            // panel4
-            // 
-            panel4.Controls.Add(editorLabel);
-            panel4.Controls.Add(button1);
-            panel4.Controls.Add(removeBtn);
-            panel4.Controls.Add(AddPersonBtn);
-            panel4.Location = new Point(3, 137);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(219, 132);
-            panel4.TabIndex = 8;
-            // 
-            // editorLabel
-            // 
-            editorLabel.AutoSize = true;
-            editorLabel.Location = new Point(7, 7);
-            editorLabel.Name = "editorLabel";
-            editorLabel.Size = new Size(43, 17);
-            editorLabel.TabIndex = 4;
-            editorLabel.Text = "Editor";
-            // 
             // MainFrom
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(998, 359);
+            ClientSize = new Size(998, 398);
             Controls.Add(panel1);
             Controls.Add(dataGridView1);
             Name = "MainFrom";
             Text = "Form1";
-            Load += Form1_Load;
+            Load += MainForm_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             panel1.ResumeLayout(false);
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -282,16 +301,17 @@
         private TextBox fromIndexTB;
         private TextBox toIndexTB;
         private Button displayWithSpecifiedBtn;
-        private Button removeBtn;
-        private Button AddPersonBtn;
-        private Button button1;
-        private Button button2;
-        private Button button3;
+        private Button removePersonBtn;
+        private Button addPersonBtn;
+        private Button sortBtn;
+        private Button lateBindingDemoBtn;
+        private Button exitBtn;
         private Panel panel4;
         private Label editorLabel;
         private Panel panel3;
-        private Button button5;
-        private Button button4;
+        private Button writeXMLbtn;
+        private Button loadXMLBtn;
         private Label label4;
+        private Button changePersonBtn;
     }
 }

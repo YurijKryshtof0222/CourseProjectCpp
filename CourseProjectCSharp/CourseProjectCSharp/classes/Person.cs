@@ -13,7 +13,7 @@ namespace CourseProjectCSharp.classes
         private string firstname;
         private string lastname;
         private string occupation;
-        private bool sex;
+        private gender gender;
         private int salary;
         private Date waitingTime;
 
@@ -61,10 +61,10 @@ namespace CourseProjectCSharp.classes
             }
         }
 
-        public bool Sex 
+        public gender Gender 
         { 
-            get { return sex; }
-            set { sex = value; }
+            get { return gender; }
+            set { gender = value; }
         }
 
         public int Salary
@@ -89,18 +89,18 @@ namespace CourseProjectCSharp.classes
             }
         }
 
-        public Person(Date birthdate, string firstname, string lastname, string occupation, bool sex, int salary, Date waitingTime)
+        public Person(Date birthdate, string firstname, string lastname, string occupation, gender gender, int salary, Date waitingTime)
         {
             Birthdate = birthdate;
             Firstname = firstname;
             Lastname = lastname;
             Occupation = occupation;
-            Sex = sex;
+            Gender = gender;
             Salary = salary;
             WaitingTime = waitingTime;
         }
 
-        public Person() : this(new Date(15, 1, 1990), "John", "Doe", "driver", true, 20000, new Date(25, 1, 2010))
+        public Person() : this(new Date(15, 1, 1990), "John", "Doe", "driver", gender.Male, 20000, new Date(25, 1, 2010))
         { }
 
         public Person(Person other)
@@ -109,7 +109,7 @@ namespace CourseProjectCSharp.classes
             Firstname = other.Firstname;
             Lastname = other.Lastname;
             Occupation = other.Occupation;
-            Sex = other.Sex;
+            Gender = other.gender;
             Salary = other.Salary;
             WaitingTime = other.WaitingTime;
         }
@@ -119,7 +119,10 @@ namespace CourseProjectCSharp.classes
 
         public string DateToString()
         {
-            return string.Format("{0}_{1}{2}_{3}", Birthdate.Year, Birthdate.Month < 10 ? "0" : "", Birthdate.Month, Birthdate.Day);
+            return string.Format("{0}_{1}{2}_{3}{4}", 
+                Birthdate.Year, 
+                Birthdate.Month < 10 ? "0" : "", Birthdate.Month,
+                Birthdate.Day < 10   ? "0" : "", Birthdate.Day);
         }
 
         public object Clone()

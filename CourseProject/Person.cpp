@@ -3,20 +3,18 @@
 #include "Date.h"
 #include "Person.h"
 
-Person::Person() : Person(Date(15, 1, 1990), "John", "Doe", "driver", 20000, true)
+Person::Person() : Person(Date(15, 1, 1990), "John", "Doe", "driver", 20000, MALE)
 {
 }
 
-Person::Person(Date birthdate, std::string firstname, std::string lastname, std::string occupation, int salary, bool sex) 
-	
-{
-	this->birthdate = birthdate;
-	this->firstname = firstname;
-	this->lastname = lastname;
-	this->occupation = occupation;
-	this->salary = salary;
-	this->sex = sex;
-}
+Person::Person(Date birthdate, std::string firstname, std::string lastname, std::string occupation, int salary, gender sex)
+	: birthdate(birthdate),
+	firstname(firstname),
+	lastname(lastname),
+	occupation(occupation),
+	salary(salary),
+	sex(sex)
+{}
 
 Person::~Person() {}
 
@@ -61,7 +59,7 @@ void Person::setSalary(int salary)
 	this->salary = salary;
 }
 
-void Person::setSex(bool sex)
+void Person::setGender(gender sex)
 {
 	this->sex = sex;
 }
@@ -86,7 +84,7 @@ int Person::getSalary() const
 	return salary;
 }
 
-bool Person::getSex() const
+gender Person::getGender() const
 {
 	return sex;
 }
@@ -153,8 +151,8 @@ std::istream& operator >> (std::istream& is, Person& person)
 	cout << "Enter sex(m/w): ";
 	is >> sexCh;
 
-	bool sex = sexCh == 'm' ? true : false;
-	person.setSex(sex);
+	gender sex = sexCh == 'm' ? MALE : FEMALE;
+	person.setGender(sex);
 
 	return is;
 }

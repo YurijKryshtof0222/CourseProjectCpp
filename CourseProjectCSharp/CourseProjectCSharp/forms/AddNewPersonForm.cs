@@ -13,7 +13,7 @@ namespace CourseProjectCSharp.forms
 {
     public partial class AddNewPersonForm : Form
     {
-        public BindingList<Person> Persons { get; set; }
+        public BuildingsQueue Queue { get; set; }
 
         public AddNewPersonForm()
         {
@@ -47,12 +47,12 @@ namespace CourseProjectCSharp.forms
 
                 int salary = int.Parse(SalaryTB.Text);
 
-                Persons.Add(new Person(
+                Queue.Add(new Person(
                     new Date(birthDateDay, birthDateMonth, birthDateYear),
                     firstnameTB.Text,
                     lastnameTB.Text,
                     occupationTB.Text,
-                    genderCB.Text.Equals("Male") ? gender.Male : gender.Female,
+                    genderCB.Text.Equals("Male") ? Gender.Male : Gender.Female,
                     salary,
                     new Date(wtDateDay, wtDateMonth, wtDateYear)
                 ));

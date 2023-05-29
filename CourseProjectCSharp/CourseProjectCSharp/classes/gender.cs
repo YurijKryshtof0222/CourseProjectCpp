@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CourseProjectCSharp.classes
 {
-    public enum gender
+    public enum Gender
     {
         Male, Female
     }

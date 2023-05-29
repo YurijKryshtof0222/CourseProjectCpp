@@ -9,37 +9,33 @@
 class Date : public IDateStringFormatRetriever
 {
 private:
+    int day;
+    int month;
+    int year;
+public:
     static std::map<int, int> monthDaysMap;
     static std::map<int, int> initMonthDaysMap();
 
-    static int getDaysByMonth(int month);
+    static int getMonthDays(int month, int year);
 
-    static void validateDay(int month, int day);
+    static void validateDay(int day, int month, int year);
     static void validateMonth(int month);
     static void validateYear(int year);
 
     static void validateAll(int day, int month, int year);
     
-    int day;
-    int month;
-    int year;
-public:
-    // конструктори
     Date();
     Date(int day, int month, int year);
     Date(const Date& other);
 
-    // деструктор
     ~Date();
 
-    // методи отримання значень полів
     int getDay() const;
     int getMonth() const;
     int getYear() const;
 
     std::string dateToString() const override;
 
-    // методи встановлення значень полів
     void setDay(int day);
     void setMonth(int month);
     void setYear(int year);

@@ -45,14 +45,21 @@ Date::Date(const Date& other)
 
 Date::~Date() {}
 
-int Date::getDaysByMonth(int month)
+int Date::getMonthDays(int month, int year)
 {
-    return monthDaysMap.at(month);
+    validateMonth(month);
+    validateYear(year);
+    
+    int result = monthDaysMap.at(month);
+    //For checking leap year
+    if (month == 2 && ((year % 400 == 0) || ((year % 100 != 0) && (year % 4 == 0))))
+        result++;
+    return result;
 }
 
-void Date::validateDay(int month, int day)
+void Date::validateDay(int day, int month, int year)
 {
-    if (day < 1 || day > monthDaysMap.at(month))
+    if (day < 1 || day > getMonthDays(month, year))
         throw std::runtime_error("Incorrect day value!");
 }
 
@@ -72,13 +79,13 @@ void Date::validateAll(int day, int month, int year)
 {
     validateYear(year);
     validateMonth(month);
-    validateDay(month, day);
+    validateDay(day, month, year);
 }
 
 // Методи налаштування значень полів
 void Date::setDay(int day)
 {
-    validateDay(month, day);
+    validateDay(day, month, year);
     this->day = day;
 }
 
@@ -123,11 +130,11 @@ void Date::operator += (int days)
 {
     if (days < 0) 
         *this -= (-days);
-    else if (this->day + days <= Date::getDaysByMonth(month))
+    else if (this->day + days <= Date::getMonthDays(month, year))
         this->day += days;
     else 
     {
-        int prevMonthDays = Date::getDaysByMonth(month);
+        int prevMonthDays = Date::getMonthDays(month, year);
         if (this->month < 12)
             this->month++;
         else 
@@ -151,7 +158,7 @@ void Date::operator -= (int days)
         this->day -= days;
     else
     {
-        int prevMonthDays = Date::getDaysByMonth(month);
+        int prevMonthDays = Date::getMonthDays(month, year);
         if (this->month > 1)
             this->month--;
         else
@@ -160,7 +167,7 @@ void Date::operator -= (int days)
             setYear(year - 1);
         }
         int remainder = days - this->day;
-        this->day = Date::getDaysByMonth(month);
+        this->day = Date::getMonthDays(month, year);
 
         *this -= remainder;
     }

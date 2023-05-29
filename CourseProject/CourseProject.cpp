@@ -5,10 +5,10 @@
 using namespace std;
 
 const char* ANSI_RESET = "\033[0m";
+const char* ANSI_RED = "\x1B[31m";
 const char* ANSI_GREEN = "\x1B[32m";
 const char* ANSI_YELLOW = "\x1B[0;33m";
-const char* ANSI_RED = "\x1B[31m";
-
+const char* ANSI_BLUE = "\x1B[36m";
 
 BuildingsQueue buildingsQueue;
 
@@ -111,19 +111,18 @@ void removePersonFromQueueMenu()
 
 void lateBindingDemoMenu()
 {
-    IDateStringFormatRetriever *date1 = new Date(24, 4, 2022);
-    IDateStringFormatRetriever *date2 = new Person;
+    Date date{ 24, 4, 2022 };
+    IDateStringFormatRetriever& retriever1 = date;
+    Person person;
+    IDateStringFormatRetriever& retriever2 = person;
 
-    cout << "Date format from Date object:\t" << ANSI_YELLOW << date1->dateToString() << ANSI_RESET << endl;
-    cout << "Date format from Person object:\t"<< ANSI_YELLOW << date2->dateToString() << ANSI_RESET << endl;
-
-    delete date1;
-    delete date2;
+    cout << "Date format from Date object:\t" << ANSI_YELLOW << retriever1.dateToString() << ANSI_RESET << endl;
+    cout << "Date format from Person object:\t"<< ANSI_YELLOW << retriever2.dateToString() << ANSI_RESET << endl;
 }
 
 void showMainMenu()
 {
-    cout << setw(60) << "BuildingsQueue Demo" << endl;
+    cout << setw(50) << ANSI_BLUE << "BuildingsQueue Demo" << ANSI_RESET << endl;
 
     bool exitState = false;
     int action;
@@ -172,7 +171,7 @@ void showMainMenu()
                 break;
             case 9:
                 exitState = true;
-                cout << setfill(' ') << setw(50) << ANSI_GREEN << "Goodbye!" << ANSI_RESET << endl;
+                cout << setfill(' ') << setw(55) << ANSI_BLUE << "Goodbye!" << ANSI_RESET << endl;
                 break;
             default:
                 cout << ANSI_RED <<

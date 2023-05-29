@@ -59,14 +59,12 @@
             // dataGridView1
             // 
             dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.AllowUserToResizeColumns = false;
-            dataGridView1.AllowUserToResizeRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(12, 12);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.Height = 27;
-            dataGridView1.Size = new Size(750, 374);
+            dataGridView1.Size = new Size(791, 374);
             dataGridView1.TabIndex = 0;
             // 
             // panel1
@@ -77,7 +75,7 @@
             panel1.Controls.Add(exitBtn);
             panel1.Controls.Add(lateBindingDemoBtn);
             panel1.Controls.Add(panel2);
-            panel1.Location = new Point(768, 12);
+            panel1.Location = new Point(809, 12);
             panel1.Name = "panel1";
             panel1.Size = new Size(225, 374);
             panel1.TabIndex = 4;
@@ -152,7 +150,7 @@
             panel3.Controls.Add(label4);
             panel3.Location = new Point(3, 101);
             panel3.Name = "panel3";
-            panel3.Size = new Size(216, 35);
+            panel3.Size = new Size(219, 35);
             panel3.TabIndex = 7;
             // 
             // writeXMLbtn
@@ -273,7 +271,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(998, 398);
+            ClientSize = new Size(1040, 398);
             Controls.Add(panel1);
             Controls.Add(dataGridView1);
             Name = "MainFrom";

@@ -28,7 +28,7 @@ namespace CourseProjectCSharp.forms
             firstnameTB.Text = Person.Firstname;
             lastnameTB.Text = Person.Lastname;
             occupationTB.Text = Person.Occupation;
-            genderCB.Text = Person.Gender == gender.Male ? "Male" : "Female";
+            genderCB.Text = Person.Gender == Gender.Male ? "Male" : "Female";
             SalaryTB.Text = Person.Salary.ToString();
 
             birthdateDayTB.Text = Person.Birthdate.Day.ToString();
@@ -59,7 +59,7 @@ namespace CourseProjectCSharp.forms
                     Person.Firstname = firstnameTB.Text;
                     Person.Lastname = lastnameTB.Text;
                     Person.Salary = int.Parse(SalaryTB.Text);
-                    Person.Gender = genderCB.Text == "Male" ? gender.Male : gender.Female;
+                    Person.Gender = genderCB.Text == "Male" ? Gender.Male : Gender.Female;
                     Person.WaitingTime = new Date(wtDateDay, wtDateMonth, wtDateYear);
 
                     this.Close();

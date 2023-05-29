@@ -13,7 +13,7 @@ namespace CourseProjectCSharp.classes
         private string firstname;
         private string lastname;
         private string occupation;
-        private gender gender;
+        private Gender gender;
         private int salary;
         private Date waitingTime;
 
@@ -61,7 +61,7 @@ namespace CourseProjectCSharp.classes
             }
         }
 
-        public gender Gender 
+        public Gender Gender 
         { 
             get { return gender; }
             set { gender = value; }
@@ -89,7 +89,7 @@ namespace CourseProjectCSharp.classes
             }
         }
 
-        public Person(Date birthdate, string firstname, string lastname, string occupation, gender gender, int salary, Date waitingTime)
+        public Person(Date birthdate, string firstname, string lastname, string occupation, Gender gender, int salary, Date waitingTime)
         {
             Birthdate = birthdate;
             Firstname = firstname;
@@ -100,7 +100,7 @@ namespace CourseProjectCSharp.classes
             WaitingTime = waitingTime;
         }
 
-        public Person() : this(new Date(15, 1, 1990), "John", "Doe", "driver", gender.Male, 20000, new Date(25, 1, 2010))
+        public Person() : this(new Date(15, 1, 1990), "John", "Doe", "driver", Gender.Male, 20000, new Date(25, 1, 2010))
         { }
 
         public Person(Person other)

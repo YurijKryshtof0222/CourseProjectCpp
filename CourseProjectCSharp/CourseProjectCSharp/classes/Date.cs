@@ -11,7 +11,7 @@ namespace CourseProjectCSharp.classes
 {
     public class Date : IDate, ICloneable, IComparable
     {
-        private readonly static Dictionary<int, int> monthDaysDictionary;
+        private readonly static int[] daysByMonth;
 
         private int day;
         private int month;
@@ -19,26 +19,23 @@ namespace CourseProjectCSharp.classes
 
         static Date()
         {
-            monthDaysDictionary = new Dictionary<int, int>();
-            monthDaysDictionary[1] = 31;  //JANUARY
-            monthDaysDictionary[2] = 28;  //FEBRUARY
-            monthDaysDictionary[3] = 31;  //MARCH
-            monthDaysDictionary[4] = 30;  //APRIL
-            monthDaysDictionary[5] = 31;  //MAY
-            monthDaysDictionary[6] = 30;  //JUNE
-            monthDaysDictionary[7] = 31;  //JULY
-            monthDaysDictionary[8] = 31;  //AUGUST
-            monthDaysDictionary[9] = 30;  //SEPTEMBER
-            monthDaysDictionary[10] = 31; //OCTOBER
-            monthDaysDictionary[11] = 30; //NOVEMBER
-            monthDaysDictionary[12] = 31; //DECEMBER
+            daysByMonth = new int[] { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
         }
+
+        public static int MonthDaysByMonthAndYear(int month, int year)
+        {
+            //For checking leap year
+            if (month == 2 && ((year % 400 == 0) || ((year % 100 != 0) && (year % 4 == 0))))
+                return daysByMonth[month - 1] + 1;
+            return daysByMonth[month - 1];
+        }
+
         public int Day
         {
             get { return day;}
             set
             {
-                if (value < 1 || value > monthDaysDictionary[Month]) 
+                if (value < 1 || value > MonthDaysByMonthAndYear(Month, Year)) 
                     throw new ArgumentOutOfRangeException("Incorrect day value");
                 day = value; 
             } 
@@ -94,13 +91,13 @@ namespace CourseProjectCSharp.classes
         {
             if (days < 0)
                 return date - (-days);
-            else if (date.Day + days <= monthDaysDictionary[date.Month])
+            else if (date.Day + days <= MonthDaysByMonthAndYear(date.Month, date.Year))
             {
                 date.Day += days;
                 return date;
             }
 
-            int prevMonthDays = monthDaysDictionary[date.Month];
+            int prevMonthDays = MonthDaysByMonthAndYear(date.Month, date.Year);
             if (date.month < 12)
                date.month++;
             else
@@ -124,7 +121,7 @@ namespace CourseProjectCSharp.classes
                 return date;
             }
 
-            int prevMonthDays = monthDaysDictionary[date.Month];
+            int prevMonthDays = MonthDaysByMonthAndYear(date.Month, date.Year);
             if (date.month > 1)
                 date.month--;
             else
@@ -133,7 +130,7 @@ namespace CourseProjectCSharp.classes
                 date.Year--;
             }
             int remainder = days - date.day;
-            date.day = monthDaysDictionary[date.Month];
+            date.day = MonthDaysByMonthAndYear(date.Month, date.Year);
 
             return date -= remainder;
         }

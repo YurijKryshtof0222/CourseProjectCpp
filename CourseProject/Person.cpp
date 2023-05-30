@@ -23,7 +23,8 @@ std::string Person::dateToString() const
 	return  std::to_string(birthdate.getYear())
 		+ "_" + (birthdate.getMonth() < 10 ? "0" : "")
 		+       std::to_string(birthdate.getMonth())
-		+ "_" + std::to_string(birthdate.getDay());
+		+ "_" + (birthdate.getDay() < 10 ? "0" : "")
+		+		std::to_string(birthdate.getDay());
 }
 
 std::string Person::fullname() const

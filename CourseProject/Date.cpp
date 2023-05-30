@@ -102,17 +102,17 @@ void Date::setYear(int year)
 }
 
 // Методи отримання значень полів
-int Date::getDay() const 
+int Date::getDay() const
 {
     return day;
 }
 
-int Date::getMonth() const 
+int Date::getMonth() const
 {
     return month;
 }
 
-int Date::getYear() const 
+int Date::getYear() const
 {
     return year;
 }
@@ -120,40 +120,62 @@ int Date::getYear() const
 std::string Date::dateToString() const
 {
     return      (day < 10 ? "0" : "")
-        +       std::to_string(day)
-        + "." + (month < 10 ? "0" : "") 
-              + std::to_string(month)
+        + std::to_string(day)
+        + "." + (month < 10 ? "0" : "")
+        + std::to_string(month)
         + "." + std::to_string(year);
-} 
+}
 
-void Date::operator += (int days)
+void Date::addDays(int days)
 {
-    if (days < 0) 
-        *this -= (-days);
+    if (days < 0)
+        this->substrDays(-days);
     else if (this->day + days <= Date::getMonthDays(month, year))
         this->day += days;
-    else 
+    else
     {
         int prevMonthDays = Date::getMonthDays(month, year);
         if (this->month < 12)
             this->month++;
-        else 
+        else
         {
             this->month = 1;
             setYear(year + 1);
         }
         int remainder = prevMonthDays - this->day;
         this->day = 1;
-       
-        *this += days - remainder - 1;
-    }
 
+        this->addDays(days - remainder - 1);
+    }
 }
 
-void Date::operator -= (int days)
+void Date::addMonths(int months)
+{
+    if (months < 0)
+    {
+        this->substrMonths(-months);
+        return;
+    }
+    
+    this->month = this->month + months;
+    if (this->month + months > 12)
+    {
+        validateYear(this->year + 1);
+        this->setYear(this->year + 1);
+        this->month -= 12;
+        this->addYears(months - 12);
+    }
+}
+
+void Date::addYears(int years)
+{
+    this->setYear(this->year + years);
+}
+
+void Date::substrDays(int days)
 {
     if (days < 0)
-        *this += (-days);
+        this->addDays(-days);
     else if (this->day - days >= 1)
         this->day -= days;
     else
@@ -169,8 +191,56 @@ void Date::operator -= (int days)
         int remainder = days - this->day;
         this->day = Date::getMonthDays(month, year);
 
-        *this -= remainder;
+        this->substrDays(remainder);
     }
+}
+
+void Date::substrMonths(int months)
+{
+    if (months < 0)
+    {
+        this->addYears(-month);
+        return;
+    }
+    
+    this->month = this->month - months;
+    if (this->month - months <= 0)
+    {
+        validateYear(this->year - 1);
+        this->setYear(this->year - 1);
+        this->month = 12;
+        this->substrMonths(months - 12);
+    }
+}
+
+void Date::substrYears(int years)
+{
+    this->setYear(this->year - years);
+}
+
+
+void Date::operator += (int days)
+{
+    this->addDays(days);
+}
+
+void Date::operator -= (int days)
+{
+    this->substrDays(days);
+}
+
+void Date::operator+=(const Date& other)
+{
+    this->addDays(other.day);
+    this->addMonths(other.month);
+    //this->addYears(other.year);
+}
+
+void Date::operator-=(const Date& other)
+{
+    this->substrDays(other.day);
+    this->substrMonths(other.month);
+    //this->substrYears(other.year);
 }
 
 void Date::operator = (const Date& other)

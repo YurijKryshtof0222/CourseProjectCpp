@@ -62,11 +62,19 @@ bool BuildingsQueue::isIndexOutOfBounds(int index) const
 
 BuildingsQueue::Iterator BuildingsQueue::begin()
 {
+	if (array.empty()) {
+		return Iterator();
+	}
+	
 	return Iterator(&array[0]);
 }
 
 BuildingsQueue::Iterator BuildingsQueue::end()
 {
+	if (array.empty()) {
+		return Iterator();
+	}
+	
 	return Iterator(&array[0] + array.size());
 }
 
@@ -86,7 +94,7 @@ std::ostream& operator << (std::ostream& os, BuildingsQueue& buildingsQueue)
 	os << "Buildings Queue { " << endl;
 	for (auto& iter : buildingsQueue)
 	{
-		os << i++ << ".) "	   << iter.first  << endl
+		os << i++ << ".) "	   << iter.first
 		   << "Waiting Time: " << iter.second << endl << endl;
 	}
 	/*for (auto iter = buildingsQueue.array.begin(); iter != buildingsQueue.array.end(); iter++)

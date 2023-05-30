@@ -40,8 +40,20 @@ public:
     void setMonth(int month);
     void setYear(int year);
 
+
+    void addDays(int);
+    void addMonths(int);
+    void addYears(int);
+
+    void substrDays(int);
+    void substrMonths(int);
+    void substrYears(int);
+
     void operator += (int days);
     void operator -= (int days);
+
+    void operator += (const Date&);
+    void operator -= (const Date&);
 
     void operator = (const Date&);
     bool operator > (const Date&);

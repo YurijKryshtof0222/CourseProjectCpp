@@ -1,6 +1,6 @@
 #include "CourseProject.h"
 
-#define delimeter cout << ANSI_YELLOW << setw(120) << setfill('-') << "\n" << ANSI_RESET;
+#define delimeter cout << ANSI_YELLOW << setw(120) << setfill('-') << "\n" << ANSI_RESET << setfill(' ');
 
 using namespace std;
 
@@ -34,15 +34,19 @@ void showQueueWithIndexRangeMenu()
     int from;
     int to;
 
-    cout << "Enter the index from which you want to show the queue: ";
+    cout << "Enter the index from which you want to show the queue: " << ANSI_YELLOW;
     cin >> from;
     from--;
 
     BuildingsQueue::Iterator iter = buildingsQueue.at(from);
 
-    cout << "Enter the index to which you want to show the queue(inclusively): ";
+    cout << ANSI_RESET << "Enter the index to which you want to show the queue(inclusively): " << ANSI_YELLOW;
     cin >> to;
     to--;
+
+    cout << ANSI_RESET;
+    if (buildingsQueue.isIndexOutOfBounds(to))
+        throw std::runtime_error("index is out of bounds");
     
     cout << "Buildings Queue { " << endl;
     for (; from <= to; from++, iter++)
@@ -64,20 +68,20 @@ void addNewPersonMenu()
     Person person;
     Date date;
     
-    cout << ANSI_YELLOW << "New person" << ANSI_RESET << endl;
+    cout << setw(55) << ANSI_BLUE << "New person" << ANSI_RESET << endl;
     person = enterDataForNewPerson();
-    cout << "Enter person waiting time: " << endl;
+    cout << setw(45) << ANSI_BLUE << "Person waiting time: " << ANSI_RESET << endl;
     date = enterDataForDate();
 
     buildingsQueue.add(person, date);
     cout << ANSI_GREEN << "Person has been added to queue successfully" << ANSI_RESET << endl;
 }
 
-void incrementWaitingTimeMenu()
+void incrementWaitingTimeMenuByDays()
 {
     int index, days;
 
-    cout << "Enter person index you want to increment waiting time: ";
+    cout << "Enter person index you want to increment waiting time ";
     cin >> index;
     index--;
 
@@ -88,10 +92,44 @@ void incrementWaitingTimeMenu()
     cout << ANSI_YELLOW << "Current " << ANSI_RESET 
         << "waiting time : "<< waitingTime << endl;
 
-    cout << "Enter days you want increment/decrement person waiting time: ";
+    cout << "Enter days you want increment/decrement person waiting time: " << ANSI_YELLOW;
     cin >> days;
 
     waitingTime += days;
+    buildingsQueue.setWaitingTime(index, waitingTime);
+
+    cout << ANSI_GREEN << "Updated " << ANSI_RESET << "waiting time : " << waitingTime << endl;
+}
+
+void incrementWaitingTimeMenuByDate()
+{
+    int index, days, months;
+
+    cout << "Enter person index you want to increment waiting time ";
+    cin >> index;
+    index--;
+
+    Person person = buildingsQueue.getPerson(index);
+    Date waitingTime = buildingsQueue.getWaitingTime(index);
+
+    cout << index + 1 << ".)" << person.fullname() << endl;
+    cout << ANSI_YELLOW << "Current " << ANSI_RESET
+        << "waiting time : " << waitingTime << endl;
+
+    cout << "Enter Date you want increment/decrement person waiting time " << endl;
+    Date date;
+
+    cout << ANSI_RESET << "Enter month (from 1 to 12): " << ANSI_YELLOW;
+    cin >> months;
+    date.setMonth(months);
+
+    int monthDays = Date::getMonthDays(months, waitingTime.getYear());
+    cout << ANSI_RESET << "Enter day: (from 1 to " << monthDays << "): " << ANSI_YELLOW;
+    cin >> days;
+    date.setDay(days);
+    cout << ANSI_RESET;
+
+    waitingTime += date;
     buildingsQueue.setWaitingTime(index, waitingTime);
 
     cout << ANSI_GREEN << "Updated " << ANSI_RESET << "waiting time : " << waitingTime << endl;
@@ -137,13 +175,14 @@ void showMainMenu()
             cout << "3.)Sort queue by decreasing waiting time" << endl;
             cout << "4.)Add new person to queue " << endl;
             cout << "5.)Delete person in queue by index " << endl;
-            cout << "6.)Increment/decrement person waiting time" << endl << endl;
-
+            cout << "6.)Increment/decrement person waiting time by days" << endl;
+            cout << "7.)Increment/decrement person waiting time by date" << endl;
             cout << "8.)Late Binding mechaninsm Demo" << endl;
             cout << "9.)Exit " << endl << endl;
 
-            cout << "Choose your action: ";
+            cout << "Choose your action: " << ANSI_BLUE;
             cin >> action;
+            cout << ANSI_RESET;
             delimeter;
 
             switch (action)
@@ -164,7 +203,10 @@ void showMainMenu()
                 removePersonFromQueueMenu();
                 break;
             case 6:
-                incrementWaitingTimeMenu();
+                incrementWaitingTimeMenuByDays();
+                break;
+            case 7:
+                incrementWaitingTimeMenuByDate();
                 break;
             case 8:
                 lateBindingDemoMenu();
@@ -194,7 +236,7 @@ Person enterDataForNewPerson()
     std::string firstname;
     std::string lastname;
     std::string occupation;
-    char sexCh;
+    string sexCh;
     int salary;
 
     int day;
@@ -203,42 +245,44 @@ Person enterDataForNewPerson()
 
     Person person;
     
-    cout << "Enter birthdate year: ";
+    cout << "Enter birthdate year(from 1900 to 2100): " << ANSI_YELLOW;
     cin >> year;
     person.getBirthDate().setYear(year);
-    cout << "Enter birthdate month: ";
+
+    cout << ANSI_RESET << "Enter birthdate month(from 1 to 12): " << ANSI_YELLOW;
     cin >> month;
     person.getBirthDate().setMonth(month);
-    cout << "Enter birthdate day: ";
+
+    int monthDays = Date::getMonthDays(month, year);
+    cout << ANSI_RESET << "Enter birthdate day (from 1 to " << monthDays << "): " << ANSI_YELLOW;
     cin >> day;
     person.getBirthDate().setDay(day);
 
-    cout << "Enter firstname: ";
+    cout << ANSI_RESET << "Enter firstname: " << ANSI_YELLOW;
 
     cin.ignore();
     getline(cin, firstname);
     person.setFirstName(firstname);
 
-    cout << "Enter lastname: ";
+    cout << ANSI_RESET << "Enter lastname: " << ANSI_YELLOW;
 
-    cin.ignore();
     getline(cin, lastname);
     person.setLastName(lastname);
 
-    cout << "Enter occupation: ";
+    cout << ANSI_RESET << "Enter occupation: " << ANSI_YELLOW;
 
-    cin.ignore();
     getline(cin, occupation);
     person.setOccupation(occupation);
 
-    cout << "Enter salary: ";
+    cout << ANSI_RESET << "Enter salary: " << ANSI_YELLOW;
     cin >> salary;
     person.setSalary(salary);
 
-    cout << "Enter sex(m/w): ";
+    cout << ANSI_RESET << "Enter sex(m/w): " << ANSI_YELLOW;
     cin >> sexCh;
 
-    gender sex = sexCh == 'm' ? MALE : FEMALE;
+    cout << ANSI_RESET;
+    gender sex = sexCh == "m" ? MALE : FEMALE;
     person.setGender(sex);
 
     return person;
@@ -250,15 +294,18 @@ Date enterDataForDate()
 
     Date date;
 
-    cout << "Enter year: ";
+    cout << ANSI_RESET << "Enter year: " << ANSI_YELLOW;
     cin >> year;
     date.setYear(year);
-    cout << "Enter month: ";
+    cout << ANSI_RESET << "Enter month (from 1 to 12): " << ANSI_YELLOW;
     cin >> month;
     date.setMonth(month);
-    cout << "Enter day: ";
+
+    int monthDays = Date::getMonthDays(month, year);
+    cout << ANSI_RESET << "Enter day: (from 1 to " << monthDays << "): " << ANSI_YELLOW;
     cin >> day;
     date.setDay(day);
+    cout << ANSI_RESET;
 
     return date;
 }

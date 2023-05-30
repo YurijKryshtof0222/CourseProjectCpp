@@ -51,7 +51,7 @@ int Date::getMonthDays(int month, int year)
     validateYear(year);
     
     int result = monthDaysMap.at(month);
-    //For checking leap year
+    //for checking leap year
     if (month == 2 && ((year % 400 == 0) || ((year % 100 != 0) && (year % 4 == 0))))
         result++;
     return result;

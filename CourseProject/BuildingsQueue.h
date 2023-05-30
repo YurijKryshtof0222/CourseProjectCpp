@@ -38,6 +38,10 @@ public:
 		pointer m_ptr;
 	};
 
+	BuildingsQueue() = default;
+
+	~BuildingsQueue();
+
 	static bool utilCompareFunction(personDatePair, personDatePair);
 	
 	void add(Person, Date);
@@ -58,4 +62,6 @@ public:
 	Iterator at(int);
 
 	friend std::ostream& operator << (std::ostream& os, BuildingsQueue& date);
+
+	
 };

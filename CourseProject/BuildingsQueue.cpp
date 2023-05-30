@@ -1,5 +1,8 @@
 #include "BuildingsQueue.h"
 
+BuildingsQueue::~BuildingsQueue()
+{}
+
 bool BuildingsQueue::utilCompareFunction(personDatePair i, personDatePair j)
 {
 	return i.second > j.second;

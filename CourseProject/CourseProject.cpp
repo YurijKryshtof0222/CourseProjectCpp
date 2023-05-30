@@ -81,7 +81,7 @@ void incrementWaitingTimeMenuByDays()
 {
     int index, days;
 
-    cout << "Enter person index you want to increment waiting time ";
+    cout << "Enter person index you want to increment waiting time: " << ANSI_YELLOW;
     cin >> index;
     index--;
 
@@ -105,9 +105,11 @@ void incrementWaitingTimeMenuByDate()
 {
     int index, days, months;
 
-    cout << "Enter person index you want to increment waiting time ";
+    cout << "Enter person index you want to increment waiting time : " << ANSI_YELLOW;
     cin >> index;
     index--;
+
+    cout << ANSI_RESET;
 
     Person person = buildingsQueue.getPerson(index);
     Date waitingTime = buildingsQueue.getWaitingTime(index);
@@ -129,7 +131,16 @@ void incrementWaitingTimeMenuByDate()
     date.setDay(days);
     cout << ANSI_RESET;
 
-    waitingTime += date;
+    string ch;
+
+    cout << ANSI_RESET << "Increment or decrement(type \"" << ANSI_GREEN << "+" << ANSI_RESET << "\" sign for increment, other word will be considered as decrement): " << ANSI_YELLOW;
+    cin >> ch;
+
+    if (ch == "+") 
+        waitingTime += date;
+    else 
+        waitingTime -= date;
+
     buildingsQueue.setWaitingTime(index, waitingTime);
 
     cout << ANSI_GREEN << "Updated " << ANSI_RESET << "waiting time : " << waitingTime << endl;

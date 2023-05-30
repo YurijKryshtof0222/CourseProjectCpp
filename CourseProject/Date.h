@@ -9,13 +9,13 @@
 class Date : public IDateStringFormatRetriever
 {
 private:
+    static std::map<int, int> monthDaysMap;
+    static std::map<int, int> initMonthDaysMap();
+    
     int day;
     int month;
     int year;
 public:
-    static std::map<int, int> monthDaysMap;
-    static std::map<int, int> initMonthDaysMap();
-
     static int getMonthDays(int month, int year);
 
     static void validateDay(int day, int month, int year);

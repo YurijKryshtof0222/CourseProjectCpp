@@ -65,9 +65,22 @@ namespace CourseProjectCSharp.forms
                     this.Close();
                 }
             }
+            catch (FormatException)
+            {
+                MessageBox.Show("Make sure that date and salary fields are filled with numeric values", "Exclamation", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                MessageBox.Show("Make sure that date fields are filled with its correct ranges\n" + ex.ParamName, "Exclamation", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            catch (ArgumentNullException)
+            {
+                MessageBox.Show("Make sure that text fields are filled", "Exclamation", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Something went wrong: " + ex.Message, "Error",
+                   MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -77,6 +90,6 @@ namespace CourseProjectCSharp.forms
             this.Close();
         }
 
-        
+
     }
 }

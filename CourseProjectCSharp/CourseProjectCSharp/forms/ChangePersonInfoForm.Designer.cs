@@ -323,8 +323,10 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "ChangePersonInfoForm";
-            Text = "ChangePersonInfoForm";
+            Text = "Update person";
             Load += ChangePersonInfoForm_Load;
             panel2.ResumeLayout(false);
             panel2.PerformLayout();

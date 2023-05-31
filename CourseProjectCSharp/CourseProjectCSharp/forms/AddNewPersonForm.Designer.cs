@@ -323,8 +323,10 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "AddNewPersonForm";
-            Text = "AddNewPersonForm";
+            Text = "Add new person";
             Load += AddNewPersonForm_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

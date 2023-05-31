@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CourseProjectCSharp.classes
 {
-    public interface IDate
+    public interface IDateStringFormatRetriever
     {
         abstract string DateToString();
     }

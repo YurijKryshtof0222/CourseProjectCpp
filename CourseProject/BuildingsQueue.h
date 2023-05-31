@@ -39,7 +39,6 @@ public:
 	};
 
 	BuildingsQueue() = default;
-
 	~BuildingsQueue();
 
 	static bool utilCompareFunction(personDatePair, personDatePair);

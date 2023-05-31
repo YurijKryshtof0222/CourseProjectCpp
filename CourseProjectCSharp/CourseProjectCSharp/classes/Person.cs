@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CourseProjectCSharp.classes
 {
-    public class Person : IDate, ICloneable
+    public class Person : IDateStringFormatRetriever, ICloneable
     {
         private Date birthdate;
         private string firstname;
@@ -50,6 +50,8 @@ namespace CourseProjectCSharp.classes
             } 
         }
 
+        public string Fullname => Firstname + " " + Lastname;
+
         public string Occupation
         {
             get { return occupation; }
@@ -73,7 +75,7 @@ namespace CourseProjectCSharp.classes
             set 
             {
                 if (value < 0)
-                    throw new ArgumentOutOfRangeException("Salary value must not be less than 0.");
+                    throw new ArgumentOutOfRangeException("Salary value must be not less than 0.");
                 salary = value; 
             }
         }
@@ -117,12 +119,18 @@ namespace CourseProjectCSharp.classes
         ~Person()
         { }
 
+        public override string ToString()
+        {
+            return "Person{ " + $"Birthdate: {Birthdate}, Firstname: {Firstname} Lastname: {Lastname} " +
+                   $"Occupation: {Occupation}, Gender: {Gender}, Salary: {Salary}, Waiting Time: {WaitingTime}" + "}";
+        }
+
         public string DateToString()
         {
             return string.Format("{0}_{1}{2}_{3}{4}", 
                 Birthdate.Year, 
                 Birthdate.Month < 10 ? "0" : "", Birthdate.Month,
-                Birthdate.Day < 10   ? "0" : "", Birthdate.Day);
+                Birthdate.Day   < 10 ? "0" : "", Birthdate.Day);
         }
 
         public object Clone()

@@ -23,6 +23,9 @@ namespace CourseProjectCSharp.classes
             return GetEnumerator();
         }
 
+        public BuildingsQueueEnumerator Begin() => BuildingsQueueEnumerator.Begin(this);
+        public BuildingsQueueEnumerator End() => BuildingsQueueEnumerator.End(this);
+
         public void WriteToXML(string filename)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(BuildingsQueue));
@@ -51,6 +54,22 @@ namespace CourseProjectCSharp.classes
         public BuildingsQueueEnumerator(BuildingsQueue queue)
         {
             this.queue = queue;
+        }
+
+        private BuildingsQueueEnumerator(BuildingsQueue queue, int index)
+        {
+            this.queue = queue;
+            currentPosition = index;
+        }
+
+        public static BuildingsQueueEnumerator Begin(BuildingsQueue queue)
+        {
+            return new BuildingsQueueEnumerator(queue);
+        }
+
+        public static BuildingsQueueEnumerator End(BuildingsQueue queue)
+        {
+            return new BuildingsQueueEnumerator(queue, queue.Count);
         }
 
         public Person Current

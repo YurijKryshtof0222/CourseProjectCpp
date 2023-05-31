@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Xml.Linq;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Diagnostics;
 
 namespace CourseProjectCSharp.classes
 {
-    public class Date : IDate, ICloneable, IComparable
+    public class Date : IDateStringFormatRetriever, ICloneable, IComparable
     {
         private readonly static int[] daysByMonth;
 
@@ -24,7 +25,7 @@ namespace CourseProjectCSharp.classes
 
         public static int MonthDaysByMonthAndYear(int month, int year)
         {
-            //For checking leap year
+            //for checking leap year
             if (month == 2 && ((year % 400 == 0) || ((year % 100 != 0) && (year % 4 == 0))))
                 return daysByMonth[month - 1] + 1;
             return daysByMonth[month - 1];
@@ -35,8 +36,9 @@ namespace CourseProjectCSharp.classes
             get { return day;}
             set
             {
-                if (value < 1 || value > MonthDaysByMonthAndYear(Month, Year)) 
-                    throw new ArgumentOutOfRangeException("Incorrect day value");
+                int days = MonthDaysByMonthAndYear(Month, Year);
+                if (value < 1 || value > days) 
+                    throw new ArgumentOutOfRangeException($"Incorrect day value: out of range{{1, {days}}} by {Month} month of {Year} year");
                 day = value; 
             } 
         }
@@ -47,7 +49,7 @@ namespace CourseProjectCSharp.classes
             set 
             { 
                 if (value < 1 || value > 12 )
-                    throw new ArgumentOutOfRangeException("Incorrect month value!");
+                    throw new ArgumentOutOfRangeException("Incorrect month value: out of range{1, 12}");
                 month = value;
             }
         }
@@ -58,7 +60,7 @@ namespace CourseProjectCSharp.classes
             set 
             { 
                 if (value < 1900 || value > 2100)
-                    throw new ArgumentOutOfRangeException("Incorrect year value!");                
+                    throw new ArgumentOutOfRangeException("Incorrect year value: out of range{1900, 2100}");                
                 year = value; 
             }
         }
@@ -87,8 +89,10 @@ namespace CourseProjectCSharp.classes
         ~Date() { }
         
         //if you overload a binary operator, such as +, += is also overloaded.
-        public static Date operator +(Date date, int days)
+        public static Date operator +(Date anotherdate, int days)
         {
+            Date date = new Date(anotherdate);
+            
             if (days < 0)
                 return date - (-days);
             else if (date.Day + days <= MonthDaysByMonthAndYear(date.Month, date.Year))
@@ -108,11 +112,13 @@ namespace CourseProjectCSharp.classes
             int remainder = prevMonthDays - date.day;
             date.day = 1;
 
-            return date += days + remainder - 1;
+            return date + ( days - remainder - 1);
         }
 
-        public static Date operator -(Date date, int days)
+        public static Date operator -(Date anotherDate, int days)
         {
+            Date date = new Date(anotherDate);
+
             if (days < 0)
                 return date + (-days);
             else if (date.Day - days >= 1)
@@ -132,7 +138,7 @@ namespace CourseProjectCSharp.classes
             int remainder = days - date.day;
             date.day = MonthDaysByMonthAndYear(date.Month, date.Year);
 
-            return date -= remainder;
+            return date - remainder;
         }
 
         public static bool operator > (Date date1, Date date2)
@@ -145,11 +151,12 @@ namespace CourseProjectCSharp.classes
             return date1.CompareTo(date2) > 0;
         }
 
-        //public static Date operator =(Date date1) => new(date1);
-
         public string DateToString()
         {
-            return string.Format("{0}.{1}{2}.{3}", Day, Month < 10 ? "0" : "", Month, Year);
+            return string.Format("{0}{1}.{2}{3}.{4}", 
+                Day < 10 ? "0" : "", Day, 
+                Month < 10 ? "0" : "", Month, 
+                Year);
         }
 
         public override string ToString()

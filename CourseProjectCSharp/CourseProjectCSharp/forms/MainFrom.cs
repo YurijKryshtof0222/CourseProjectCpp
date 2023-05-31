@@ -137,6 +137,7 @@ namespace CourseProjectCSharp
                 changePersonInfoForm.ShowDialog();
 
                 Queue[index] = changePersonInfoForm.Person;
+                RefreshDataGridView();
             }
         }
 

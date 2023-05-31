@@ -50,7 +50,10 @@ namespace CourseProjectCSharp.classes
             } 
         }
 
-        public string Fullname => Firstname + " " + Lastname;
+        public string GetFullname()
+        {
+            return Firstname + " " + Lastname;
+        }
 
         public string Occupation
         {

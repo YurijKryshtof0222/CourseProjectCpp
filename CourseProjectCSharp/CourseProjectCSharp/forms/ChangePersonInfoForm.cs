@@ -58,6 +58,7 @@ namespace CourseProjectCSharp.forms
                     Person.Birthdate = new Date(birthDateDay, birthDateMonth, birthDateYear);
                     Person.Firstname = firstnameTB.Text;
                     Person.Lastname = lastnameTB.Text;
+                    Person.Occupation = occupationTB.Text;
                     Person.Salary = int.Parse(SalaryTB.Text);
                     Person.Gender = genderCB.Text == "Male" ? Gender.Male : Gender.Female;
                     Person.WaitingTime = new Date(wtDateDay, wtDateMonth, wtDateYear);

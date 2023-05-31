@@ -105,8 +105,8 @@ gender Person::getGender() const
 
 std::ostream& operator << (std::ostream& os, const Person& person)
 {
-	os << "Surname: " << person.lastname << std::endl;
-	os << "Name: " << person.firstname << std::endl;
+	os << "Lastname: " << person.lastname << std::endl;
+	os << "Firstname: " << person.firstname << std::endl;
 	os << "Birthdate: " << person.dateToString() << std::endl;
 
 	os << "Sex: " << (person.sex ? "Male" : "Female") << std::endl;

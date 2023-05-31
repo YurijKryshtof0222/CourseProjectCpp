@@ -23,7 +23,7 @@ namespace CourseProjectCSharp.forms
 
         private void UpdateWaitingTimeForm_Load(object sender, EventArgs e)
         {
-            personDatalabel.Text = $"Person: {SelectedPerson.Fullname}, Waiting Time: {SelectedPerson.WaitingTime}";
+            personDatalabel.Text = $"Person: {SelectedPerson.GetFullname()}, Waiting Time: {SelectedPerson.WaitingTime}";
         }
 
         private void CancelBtn_Click(object sender, EventArgs e)

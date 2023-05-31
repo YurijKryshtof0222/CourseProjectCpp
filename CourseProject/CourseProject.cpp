@@ -22,6 +22,7 @@ void fillDataForQueue() {
     Person person2(Date(15, 10, 1985), "Oleh", "Vynnyk", "SEO", 40000, MALE);
     Person person3(Date(23, 11, 1993), "Vitalii", "Tsal'", "mechainic", 12000, MALE);
     Person person4(Date(16, 6, 2000),  "Yana", "Zyst", "hairdresser", 13000, FEMALE);
+    Person person4(Date(2, 3, 1969),  "Billy", "Heringhton", "Locksmith", 17000, MALE);
 
     buildingsQueue.add(person1, date1);
     buildingsQueue.add(person2, date2);

@@ -1,7 +1,9 @@
 #include "BuildingsQueue.h"
 
 BuildingsQueue::~BuildingsQueue()
-{}
+{
+	array.clear();
+}
 
 bool BuildingsQueue::utilCompareFunction(personDatePair i, personDatePair j)
 {

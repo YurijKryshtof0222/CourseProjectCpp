@@ -110,7 +110,7 @@ namespace CourseProjectCSharp.classes
 
         public Person(Person other)
         {
-            Birthdate = other.Birthdate;
+            Birthdate = (Date)other.Birthdate.Clone();
             Firstname = other.Firstname;
             Lastname = other.Lastname;
             Occupation = other.Occupation;

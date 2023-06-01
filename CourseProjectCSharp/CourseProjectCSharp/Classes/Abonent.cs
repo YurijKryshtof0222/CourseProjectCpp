@@ -36,13 +36,13 @@ namespace CourseProjectCSharp.Classes
         }
         public Abonent(Abonent other)
         {
-            Birthdate = other.Birthdate;
+            Birthdate = (Date)other.Birthdate.Clone();
             Firstname = other.Firstname;
             Lastname = other.Lastname;
             Occupation = other.Occupation;
             Gender = other.Gender;
             Salary = other.Salary;
-            WaitingTime = other.WaitingTime;
+            WaitingTime = (Date)other.WaitingTime.Clone();
         }
 
         public override string ToString()

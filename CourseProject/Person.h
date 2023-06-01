@@ -48,6 +48,8 @@ public:
 
 	std::string fullname() const;
 
+	void operator = (const Person&);
+
 	friend std::ostream& operator << (std::ostream& os, const Person& date);
 	friend std::istream& operator >> (std::istream& is, Person& date);
 };

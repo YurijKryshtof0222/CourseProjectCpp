@@ -1,4 +1,5 @@
 using CourseProjectCSharp.classes;
+using CourseProjectCSharp.Classes;
 using CourseProjectCSharp.forms;
 using System.ComponentModel;
 using System.Security.Cryptography;
@@ -17,7 +18,7 @@ namespace CourseProjectCSharp
 
         private void RefreshDataGridView()
         {
-            dataGridView1.DataSource = new BindingList<Person>(Queue);
+            dataGridView1.DataSource = new BindingList<Abonent>(Queue);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -26,7 +27,7 @@ namespace CourseProjectCSharp
 
             //dataGridView1.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-            dataGridView1.DataSource = new BindingList<Person>(Queue);
+            dataGridView1.DataSource = new BindingList<Abonent>(Queue);
         }
 
         private void DisplayBtn_Click(object sender, EventArgs e)

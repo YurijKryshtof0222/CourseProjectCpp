@@ -1,4 +1,5 @@
 ﻿using CourseProjectCSharp.classes;
+using CourseProjectCSharp.Classes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace CourseProjectCSharp.forms
 {
     public partial class UpdateWaitingTimeForm : Form
     {
-        public Person SelectedPerson { get; set; }
+        public Abonent SelectedPerson { get; set; }
 
         public UpdateWaitingTimeForm()
         {

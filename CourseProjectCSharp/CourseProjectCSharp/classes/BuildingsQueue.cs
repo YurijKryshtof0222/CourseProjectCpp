@@ -1,19 +1,20 @@
-﻿using System.Collections;
+﻿using CourseProjectCSharp.Classes;
+using System.Collections;
 using System.Xml.Serialization;
 
 namespace CourseProjectCSharp.classes
 {
-    public class BuildingsQueue : List<Person>, IEnumerable<Person>, IEnumerable
+    public class BuildingsQueue : List<Abonent>, IEnumerable<Abonent>, IEnumerable
     {
         public void SortByDecrasingWaitingTime()
         {
-            this.Sort((Person x, Person y) =>
+            this.Sort((Abonent x, Abonent y) =>
             {
                 return (y.WaitingTime.CompareTo(x.WaitingTime));
             });
         }
 
-        public new IEnumerator<Person> GetEnumerator()
+        public new IEnumerator<Abonent> GetEnumerator()
         {
             return new BuildingsQueueEnumerator(this);
         }
@@ -46,7 +47,7 @@ namespace CourseProjectCSharp.classes
 
     }
 
-    public class BuildingsQueueEnumerator : IEnumerator<Person> 
+    public class BuildingsQueueEnumerator : IEnumerator<Abonent> 
     {
         private BuildingsQueue queue;
         private int currentPosition = -1;
@@ -72,7 +73,7 @@ namespace CourseProjectCSharp.classes
             return new BuildingsQueueEnumerator(queue, queue.Count);
         }
 
-        public Person Current
+        public Abonent Current
         {
             get
             {
@@ -92,7 +93,7 @@ namespace CourseProjectCSharp.classes
 
         public void Dispose()
         {
-            queue.Clear();
+            //queue.Clear();
         }
 
         public bool MoveNext()

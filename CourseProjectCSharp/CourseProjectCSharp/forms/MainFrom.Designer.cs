@@ -290,7 +290,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "MainFrom";
-            Text = "Builidngs Queue Demo";
+            Text = "Buildings Queue Demo";
             Load += MainForm_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             panel1.ResumeLayout(false);

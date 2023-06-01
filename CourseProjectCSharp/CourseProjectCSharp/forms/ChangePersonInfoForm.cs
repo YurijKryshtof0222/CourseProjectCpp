@@ -1,4 +1,5 @@
 ﻿using CourseProjectCSharp.classes;
+using CourseProjectCSharp.Classes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +14,7 @@ namespace CourseProjectCSharp.forms
 {
     public partial class ChangePersonInfoForm : Form
     {
-        public Person Person { get; set; }
+        public Abonent Person { get; set; }
 
         public ChangePersonInfoForm()
         {

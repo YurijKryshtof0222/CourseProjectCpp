@@ -15,7 +15,7 @@ namespace CourseProjectCSharp.classes
         private string occupation;
         private Gender gender;
         private int salary;
-        private Date waitingTime;
+ /*       private Date waitingTime;*/
 
         public Date Birthdate
         {
@@ -83,7 +83,7 @@ namespace CourseProjectCSharp.classes
             }
         }
 
-        public Date WaitingTime
+        /*public Date WaitingTime
         {
             get { return waitingTime; }
             set
@@ -92,9 +92,9 @@ namespace CourseProjectCSharp.classes
                     throw new ArgumentNullException("Waiting time date value must not be null.");
                 waitingTime = value;
             }
-        }
+        }*/
 
-        public Person(Date birthdate, string firstname, string lastname, string occupation, Gender gender, int salary, Date waitingTime)
+        public Person(Date birthdate, string firstname, string lastname, string occupation, Gender gender, int salary /*Date waitingTime*/)
         {
             Birthdate = birthdate;
             Firstname = firstname;
@@ -102,10 +102,10 @@ namespace CourseProjectCSharp.classes
             Occupation = occupation;
             Gender = gender;
             Salary = salary;
-            WaitingTime = waitingTime;
+           /* WaitingTime = waitingTime;*/
         }
 
-        public Person() : this(new Date(15, 1, 1990), "John", "Doe", "driver", Gender.Male, 20000, new Date(25, 1, 2010))
+        public Person() : this(new Date(15, 1, 1990), "John", "Doe", "driver", Gender.Male, 20000 /*new Date(25, 1, 2010)*/)
         { }
 
         public Person(Person other)
@@ -114,9 +114,9 @@ namespace CourseProjectCSharp.classes
             Firstname = other.Firstname;
             Lastname = other.Lastname;
             Occupation = other.Occupation;
-            Gender = other.gender;
+            Gender = other.Gender;
             Salary = other.Salary;
-            WaitingTime = other.WaitingTime;
+            /*WaitingTime = other.WaitingTime;*/
         }
 
         ~Person()
@@ -125,7 +125,7 @@ namespace CourseProjectCSharp.classes
         public override string ToString()
         {
             return "Person{ " + $"Birthdate: {Birthdate}, Firstname: {Firstname} Lastname: {Lastname} " +
-                   $"Occupation: {Occupation}, Gender: {Gender}, Salary: {Salary}, Waiting Time: {WaitingTime}" + "}";
+                   $"Occupation: {Occupation}, Gender: {Gender}, Salary: {Salary} }}";
         }
 
         public string DateToString()

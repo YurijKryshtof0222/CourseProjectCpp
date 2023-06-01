@@ -1,4 +1,5 @@
 ﻿using CourseProjectCSharp.classes;
+using CourseProjectCSharp.Classes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -47,7 +48,7 @@ namespace CourseProjectCSharp.forms
 
                 int salary = int.Parse(SalaryTB.Text);
 
-                Queue.Add(new Person(
+                Queue.Add(new Abonent(
                     new Date(birthDateDay, birthDateMonth, birthDateYear),
                     firstnameTB.Text,
                     lastnameTB.Text,

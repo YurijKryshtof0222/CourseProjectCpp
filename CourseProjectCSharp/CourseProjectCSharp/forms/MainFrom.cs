@@ -48,7 +48,7 @@ namespace CourseProjectCSharp
             }
             catch (ArgumentOutOfRangeException)
             {
-                MessageBox.Show("The entered index range is out of range of this queue!", "Exclamation",
+                MessageBox.Show($"The entered index range is out of range of this queue!", "Exclamation",
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             catch (FormatException)

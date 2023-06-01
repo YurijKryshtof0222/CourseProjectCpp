@@ -42,16 +42,6 @@ std::string Person::fullname() const
 	return firstname + " " + lastname;
 }
 
-void Person::operator=(const Person& person)
-{
-	this->birthdate = person.birthdate;
-	this->firstname = person.firstname;
-	this->lastname = person.firstname;
-	this->occupation = person.firstname;
-	this->salary = person.salary;
-	this->sex = person.sex;
-}
-
 void Person::setBirthDate(const Date birthdate)
 {
 	if (&birthdate == nullptr)
@@ -121,6 +111,16 @@ int Person::getSalary() const
 gender Person::getGender() const
 {
 	return sex;
+}
+
+void Person::operator=(const Person& person)
+{
+	this->birthdate = person.birthdate;
+	this->firstname = person.firstname;
+	this->lastname = person.firstname;
+	this->occupation = person.firstname;
+	this->salary = person.salary;
+	this->sex = person.sex;
 }
 
 std::ostream& operator << (std::ostream& os, const Person& person)

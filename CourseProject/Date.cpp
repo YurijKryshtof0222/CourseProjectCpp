@@ -82,7 +82,6 @@ void Date::validateAll(int day, int month, int year)
     validateDay(day, month, year);
 }
 
-// Методи налаштування значень полів
 void Date::setDay(int day)
 {
     validateDay(day, month, year);
@@ -101,7 +100,6 @@ void Date::setYear(int year)
     this->year = year;
 }
 
-// Методи отримання значень полів
 int Date::getDay() const
 {
     return day;

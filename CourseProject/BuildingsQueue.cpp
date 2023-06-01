@@ -1,5 +1,8 @@
 #include "BuildingsQueue.h"
 
+BuildingsQueue::BuildingsQueue()
+{}
+
 BuildingsQueue::~BuildingsQueue()
 {
 	array.clear();
@@ -26,7 +29,7 @@ void BuildingsQueue::remove(int index)
 	array.erase(array.begin() + index);
 }
 
-Person BuildingsQueue::getPerson(int index) const
+Person BuildingsQueue::getPerson(int index)
 {
 	if (isIndexOutOfBounds(index))
 		throw std::runtime_error("index is out of bounds");
@@ -34,7 +37,7 @@ Person BuildingsQueue::getPerson(int index) const
 	return array[index].first;
 }
 
-Date BuildingsQueue::getWaitingTime(int index) const
+Date BuildingsQueue::getWaitingTime(int index)
 {
 	if (isIndexOutOfBounds(index))
 		throw std::runtime_error("index is out of bounds");
@@ -65,30 +68,30 @@ void BuildingsQueue::sortByTheLengthOfStay()
 	std::sort(array.begin(), array.end(), utilCompareFunction);
 }
 
-bool BuildingsQueue::isIndexOutOfBounds(int index) const
+bool BuildingsQueue::isIndexOutOfBounds(int index) 
 {
 	return index < 0 || index > array.size();
 }
-
-BuildingsQueue::Iterator BuildingsQueue::begin()
+ 
+BuildingsQueue::Iterator BuildingsQueue::begin() 
 {
 	if (array.empty()) {
-		return Iterator();
+		throw std::runtime_error("index is out of bounds");
 	}
 	
 	return Iterator(&array[0]);
 }
 
-BuildingsQueue::Iterator BuildingsQueue::end()
+BuildingsQueue::Iterator BuildingsQueue::end() 
 {
 	if (array.empty()) {
-		return Iterator();
+		throw std::runtime_error("index is out of bounds");
 	}
 	
 	return Iterator(&array[0] + array.size());
 }
 
-BuildingsQueue::Iterator BuildingsQueue::at(int index)
+BuildingsQueue::Iterator BuildingsQueue::at(int index) 
 {
 	if (isIndexOutOfBounds(index))
 		throw std::runtime_error("index is out of bounds");

@@ -16,6 +16,16 @@ Person::Person(Date birthdate, std::string firstname, std::string lastname, std:
 	sex(sex)
 {}
 
+Person::Person(const Person & other)
+{
+	this->birthdate = other.birthdate;
+	this->firstname = other.firstname;
+	this->lastname = other.lastname;
+	this->occupation = other.occupation;
+	this->salary = other.salary;
+	this->sex = other.sex;
+}
+
 Person::~Person() {}
 
 std::string Person::dateToString() const

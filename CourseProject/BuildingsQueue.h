@@ -17,7 +17,7 @@ public:
 	class Iterator
 	{
 	public:
-		using iterator_category = std::forward_iterator_tag;
+		using iterator_category = std::bidirectional_iterator_tag;
 		using difference_type	= std::ptrdiff_t;
 		using value_type		= personDatePair;
 		using pointer			= personDatePair*;
@@ -41,7 +41,7 @@ public:
 		pointer m_ptr;
 	};
 
-	BuildingsQueue() = default;
+	BuildingsQueue();
 	~BuildingsQueue();
 
 	static bool utilCompareFunction(personDatePair, personDatePair);
@@ -49,15 +49,15 @@ public:
 	void add(Person, Date);
 	void remove(int index);
 
-	Person getPerson(int index)			const;
-	Date getWaitingTime(int index)		const;
+	Person getPerson(int index);
+	Date getWaitingTime(int index);
 
 	void setPerson(int index, Person);
 	void setWaitingTime(int index, Date);
 
 	void sortByTheLengthOfStay();
 
-	bool isIndexOutOfBounds(int)		const;
+	bool isIndexOutOfBounds(int);
 
 	Iterator begin();
 	Iterator end();

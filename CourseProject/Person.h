@@ -27,6 +27,7 @@ public:
 		std::string occupation,
 		int salary,
 		gender sex);
+	Person(const Person& other);
 
 	~Person();
 

@@ -16,7 +16,7 @@ void BuildingsQueue::add(Person person, Date date)
 	if (person.getBirthDate() > date)
 		throw std::runtime_error("birthdate cannot be later than waiting time date!");
 	
-	array.push_back(personDatePair(person, date));
+	persons.push_back(personDatePair(person, date));
 }
 
 void BuildingsQueue::remove(int index)
@@ -24,7 +24,7 @@ void BuildingsQueue::remove(int index)
 	if (isIndexOutOfBounds(index))
 		throw std::runtime_error("index is out of bounds");
 
-	array.erase(array.begin() + index);
+	persons.erase(persons.begin() + index);
 }
 
 Person BuildingsQueue::getPerson(int index)
@@ -32,7 +32,7 @@ Person BuildingsQueue::getPerson(int index)
 	if (isIndexOutOfBounds(index))
 		throw std::runtime_error("index is out of bounds");
 
-	return array[index].first;
+	return persons[index].first;
 }
 
 Date BuildingsQueue::getWaitingTime(int index)
@@ -40,7 +40,7 @@ Date BuildingsQueue::getWaitingTime(int index)
 	if (isIndexOutOfBounds(index))
 		throw std::runtime_error("index is out of bounds");
 
-	return array[index].second;
+	return persons[index].second;
 }
 
 void BuildingsQueue::setPerson(int index, Person person)
@@ -48,45 +48,45 @@ void BuildingsQueue::setPerson(int index, Person person)
 	if (isIndexOutOfBounds(index))
 		throw std::runtime_error("index is out of bounds");
 	
-	array[index].first = person;
+	persons[index].first = person;
 }
 
 void BuildingsQueue::setWaitingTime(int index, Date date)
 {
 	if (isIndexOutOfBounds(index))
 		throw std::runtime_error("index is out of bounds");
-	if (array[index].first.getBirthDate() > date)
+	if (persons[index].first.getBirthDate() > date)
 		throw std::runtime_error("birthdate cannot be later than waiting time date!");
 
-	array[index].second = date;
+	persons[index].second = date;
 }
 
 void BuildingsQueue::sortByTheLengthOfStay()
 {
-	std::sort(array.begin(), array.end(), utilCompareFunction);
+	std::sort(persons.begin(), persons.end(), utilCompareFunction);
 }
 
 bool BuildingsQueue::isIndexOutOfBounds(int index) 
 {
-	return index < 0 || index > array.size();
+	return index < 0 || index > persons.size();
 }
  
 BuildingsQueue::Iterator BuildingsQueue::begin() 
 {
-	if (array.empty()) {
+	if (persons.empty()) {
 		throw std::runtime_error("index is out of bounds");
 	}
 	
-	return Iterator(&array[0]);
+	return Iterator(&persons[0]);
 }
 
 BuildingsQueue::Iterator BuildingsQueue::end() 
 {
-	if (array.empty()) {
+	if (persons.empty()) {
 		throw std::runtime_error("index is out of bounds");
 	}
 	
-	return Iterator(&array[0] + array.size());
+	return Iterator(&persons[0] + persons.size());
 }
 
 BuildingsQueue::Iterator BuildingsQueue::at(int index) 
@@ -94,7 +94,7 @@ BuildingsQueue::Iterator BuildingsQueue::at(int index)
 	if (isIndexOutOfBounds(index))
 		throw std::runtime_error("index is out of bounds");
 	
-	return Iterator(&array[0] + index);
+	return Iterator(&persons[0] + index);
 }
 
 std::ostream& operator << (std::ostream& os, BuildingsQueue& buildingsQueue)

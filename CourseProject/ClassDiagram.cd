@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BuildingsQueue">
+    <Position X="6" Y="0.75" Width="2.75" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="BuildingsQueue::Iterator">
+        <TypeIdentifier>
+          <NewMemberFileName>BuildingsQueue.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAABBCAQEAAAAEABAAAgIwAAAAAAAAgQAAAAACAAA=</HashCode>
+      <FileName>BuildingsQueue.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Date">
+    <Position X="0.5" Y="2.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>ACAkAAAAI0CAAQAIAQAEQQAAAAQgCgABCEghgAQAQAA=</HashCode>
+      <FileName>Date.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IDateStringFormatRetriever">
+    <Position X="1.25" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>IDateStringFormatRetriever.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Person">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <InheritanceLine Type="IDateStringFormatRetriever" FixedToPoint="true">
+      <Path>
+        <Point X="2.375" Y="1.87" />
+        <Point X="2.375" Y="2.125" />
+        <Point X="4.688" Y="2.125" />
+        <Point X="4.688" Y="2.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AIAAAAIAIUhgAAYgBAQAAAABABAABAAAIAIgAEECAAA=</HashCode>
+      <FileName>Person.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9.75" />
+</ClassDiagram>

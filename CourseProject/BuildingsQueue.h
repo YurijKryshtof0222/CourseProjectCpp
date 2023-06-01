@@ -12,7 +12,7 @@ class BuildingsQueue
 {
 	using personDatePair = std::pair<Person, Date>;
 private:
-	std::vector<personDatePair> array;
+	std::vector<personDatePair> persons;
 public:
 	class Iterator
 	{

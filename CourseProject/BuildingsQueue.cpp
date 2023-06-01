@@ -10,6 +10,9 @@ bool BuildingsQueue::utilCompareFunction(personDatePair i, personDatePair j)
 
 void BuildingsQueue::add(Person person, Date date)
 {
+	if (person.getBirthDate() > date)
+		throw std::runtime_error("birthdate cannot be later than waiting time date!");
+	
 	array.push_back(personDatePair(person, date));
 }
 
@@ -49,6 +52,8 @@ void BuildingsQueue::setWaitingTime(int index, Date date)
 {
 	if (isIndexOutOfBounds(index))
 		throw std::runtime_error("index is out of bounds");
+	if (array[index].first.getBirthDate() > date)
+		throw std::runtime_error("birthdate cannot be later than waiting time date!");
 
 	array[index].second = date;
 }

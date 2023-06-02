@@ -117,8 +117,8 @@ void Person::operator=(const Person& person)
 {
 	this->birthdate = person.birthdate;
 	this->firstname = person.firstname;
-	this->lastname = person.firstname;
-	this->occupation = person.firstname;
+	this->lastname = person.lastname;
+	this->occupation = person.occupation;
 	this->salary = person.salary;
 	this->sex = person.sex;
 }

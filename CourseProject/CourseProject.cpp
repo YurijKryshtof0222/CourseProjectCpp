@@ -17,6 +17,7 @@ void fillDataForQueue() {
     Date date2(15, 10, 2025);
     Date date3(17, 5, 2023);
     Date date4(17, 3, 2024);
+    Date date5(21, 3, 2027);
     
     Person person1(Date(28, 9, 1997),  "Oleksii", "Pryadko", "software engineer", 20000, MALE);
     Person person2(Date(15, 10, 1985), "Oleh", "Vynnyk", "SEO", 40000, MALE);
@@ -28,6 +29,7 @@ void fillDataForQueue() {
     buildingsQueue.add(person2, date2);
     buildingsQueue.add(person3, date3);
     buildingsQueue.add(person4, date4);
+    buildingsQueue.add(person5, date5);
 }
 
 void showQueueWithIndexRangeMenu()

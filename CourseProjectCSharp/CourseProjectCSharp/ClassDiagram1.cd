@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CourseProjectCSharp.classes.Date">
+    <Position X="0.5" Y="2.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>IAAkAAAAJAAAAAQEQAGBAgAAAQQAAAAEAAAAAAAAABA=</HashCode>
+      <FileName>Classes\Date.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.179" />
+  </Class>
+  <Class Name="CourseProjectCSharp.classes.Person">
+    <Position X="3.25" Y="2.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAACGAAAAhgAACMBAAAgAQAAQAAAAAAAQAAAAEAABA=</HashCode>
+      <FileName>Classes\Person.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CourseProjectCSharp.Classes.Abonent">
+    <Position X="6" Y="2.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAABAAAAAQAAABA=</HashCode>
+      <FileName>Classes\Abonent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CourseProjectCSharp.classes.BuildingsQueue">
+    <Position X="5.75" Y="6.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAEAAAABAAIAAAAAAAAAAAEAAEAAAAAAAAgAA=</HashCode>
+      <FileName>Classes\BuildingsQueue.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CourseProjectCSharp.classes.BuildingsQueueEnumerator">
+    <Position X="9.25" Y="5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>EAIAAAAAACAABAAAAADAAAACAAAAEAAAoAAAAAAAAAA=</HashCode>
+      <FileName>Classes\BuildingsQueue.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CourseProjectCSharp.MainFrom">
+    <Position X="9.25" Y="2.5" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AgAAhAAUASAkQBAAAACAEAAChAgCAJiIEAqAAQGAACA=</HashCode>
+      <FileName>Forms\MainFrom.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="CourseProjectCSharp.classes.IDateStringFormatRetriever">
+    <Position X="1.75" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\IDateStringFormatRetriever.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9.75" />
+</ClassDiagram>

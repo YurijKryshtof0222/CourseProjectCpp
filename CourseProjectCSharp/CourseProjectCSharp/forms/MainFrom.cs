@@ -9,7 +9,7 @@ namespace CourseProjectCSharp
 {
     public partial class MainFrom : Form
     {
-        BuildingsQueue Queue { get; set; }
+        BuildingsQueue BuildingsQueue { get; set; }
 
         public MainFrom()
         {
@@ -18,16 +18,16 @@ namespace CourseProjectCSharp
 
         private void RefreshDataGridView()
         {
-            dataGridView1.DataSource = new BindingList<Abonent>(Queue);
+            dataGridView1.DataSource = new BindingList<Abonent>(BuildingsQueue);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            Queue = new BuildingsQueue();
+            BuildingsQueue = new BuildingsQueue();
 
             //dataGridView1.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-            dataGridView1.DataSource = new BindingList<Abonent>(Queue);
+            dataGridView1.DataSource = new BindingList<Abonent>(BuildingsQueue);
         }
 
         private void DisplayBtn_Click(object sender, EventArgs e)
@@ -41,7 +41,7 @@ namespace CourseProjectCSharp
 
                 for (; from <= to; from++)
                 {
-                    form.Queue.Add(Queue[from]);
+                    form.Queue.Add(BuildingsQueue[from]);
                 }
 
                 form.ShowDialog();
@@ -76,7 +76,7 @@ namespace CourseProjectCSharp
 
                     if (ofd.ShowDialog() == DialogResult.OK)
                     {
-                        Queue = Queue.ReadFromXML(ofd.FileName);
+                        BuildingsQueue = BuildingsQueue.ReadFromXML(ofd.FileName);
                     }
                 }
                 RefreshDataGridView();
@@ -106,7 +106,7 @@ namespace CourseProjectCSharp
 
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
-                    Queue.WriteToXML(sfd.FileName);
+                    BuildingsQueue.WriteToXML(sfd.FileName);
                 }
             }
             catch (Exception)
@@ -119,7 +119,7 @@ namespace CourseProjectCSharp
         private void AddPersonBtn_Click(object sender, EventArgs e)
         {
             AddNewPersonForm addNewPersonForm = new AddNewPersonForm();
-            addNewPersonForm.Queue = Queue;
+            addNewPersonForm.Queue = BuildingsQueue;
             addNewPersonForm.ShowDialog();
 
             RefreshDataGridView();
@@ -134,10 +134,10 @@ namespace CourseProjectCSharp
                 DataGridViewCell selectedCell = dataGridView1.SelectedCells[0];
                 int index = dataGridView1.Rows[selectedCell.RowIndex].Index;
 
-                changePersonInfoForm.Person = Queue[index];
+                changePersonInfoForm.Person = BuildingsQueue[index];
                 changePersonInfoForm.ShowDialog();
 
-                Queue[index] = changePersonInfoForm.Person;
+                BuildingsQueue[index] = changePersonInfoForm.Person;
                 RefreshDataGridView();
             }
         }
@@ -151,7 +151,7 @@ namespace CourseProjectCSharp
                 {
                     DataGridViewCell selectedCell = dataGridView1.SelectedCells[0];
                     int index = dataGridView1.Rows[selectedCell.RowIndex].Index;
-                    Queue.RemoveAt(index);
+                    BuildingsQueue.RemoveAt(index);
                 }
                 RefreshDataGridView();
             }
@@ -166,7 +166,7 @@ namespace CourseProjectCSharp
                 int index = dataGridView1.Rows[selectedCell.RowIndex].Index;
 
                 UpdateWaitingTimeForm form = new UpdateWaitingTimeForm();
-                form.SelectedPerson = Queue[index];
+                form.SelectedPerson = BuildingsQueue[index];
                 form.ShowDialog();
 
                 RefreshDataGridView();
@@ -175,7 +175,7 @@ namespace CourseProjectCSharp
 
         private void SortBtn_Click(object sender, EventArgs e)
         {
-            Queue.SortByDecrasingWaitingTime();
+            BuildingsQueue.SortByDecrasingWaitingTime();
             RefreshDataGridView();
         }
 

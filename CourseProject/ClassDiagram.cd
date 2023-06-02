@@ -19,6 +19,11 @@
   </Class>
   <Class Name="Date">
     <Position X="0.5" Y="2.5" Width="2.75" />
+    <InheritanceLine Type="IDateStringFormatRetriever">
+      <InheritanceModifierLabel ManuallyPlaced="true">
+        <Position X="0.421" Y="0.06" />
+      </InheritanceModifierLabel>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>ACAkAAAAI0CAAQAIAQAEQQAAAAQgCgABCEghgAQAQAA=</HashCode>
       <FileName>Date.h</FileName>
@@ -33,13 +38,10 @@
   </Class>
   <Class Name="Person">
     <Position X="4" Y="2.5" Width="1.5" />
-    <InheritanceLine Type="IDateStringFormatRetriever" FixedToPoint="true">
-      <Path>
-        <Point X="2.375" Y="1.87" />
-        <Point X="2.375" Y="2.125" />
-        <Point X="4.688" Y="2.125" />
-        <Point X="4.688" Y="2.5" />
-      </Path>
+    <InheritanceLine Type="IDateStringFormatRetriever">
+      <InheritanceModifierLabel ManuallyPlaced="true">
+        <Position X="0.182" Y="0.048" />
+      </InheritanceModifierLabel>
     </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AIAAAAIAIUhgAAYgBAQAAAABABAABAAAIAIgAEECAAA=</HashCode>

@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using System.Xml.Linq;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using System.Diagnostics;
-
-namespace CourseProjectCSharp.classes
+﻿namespace CourseProjectCSharp.classes
 {
     public class Date : IDateStringFormatRetriever, ICloneable, IComparable
     {
